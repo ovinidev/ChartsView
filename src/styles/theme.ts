@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, theme as chakraTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
 	colors: {
@@ -55,11 +55,19 @@ export const theme = extendTheme({
 		black: 900,
 	},
 
+	components: {
+		Drawer: {
+			sizes: {
+				...chakraTheme.components.Drawer.sizes,
+				xs: { dialog: { maxW: "450px" } },
+			},
+		},
+	},
+
 	styles: {
 		global: {
 			body: {
-				bg: "gray.900",
-				color: "gray.50",
+				color: "gray.900",
 			},
 		},
 	},
