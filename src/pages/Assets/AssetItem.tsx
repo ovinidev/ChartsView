@@ -11,7 +11,7 @@ export const AssetItem = ({ data }: AssetItemProps) => {
 	const navigate = useNavigate();
 
 	return (
-		<TRead onClick={() => navigate(`/unidades/${data.id}`)}>
+		<TRead onClick={() => navigate(`/maquinas/${data.id}`)}>
 			<TData>{data.name}</TData>
 			<TData>{data.status}</TData>
 			<TData>{data.healthscore}%</TData>

@@ -8,6 +8,7 @@ import WorkOrders from "@pages/WorkOrders";
 import Home from "@pages/Home";
 import UserDetails from "@pages/UserDetails";
 import UnitDetails from "@pages/UnitDetails";
+import AssetDetails from "@pages/AssetDetails";
 const NotFound = loadable(() => import("@pages/NotFound"));
 
 export function MainRoutes() {
@@ -15,6 +16,7 @@ export function MainRoutes() {
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/maquinas" element={<Assets />} />
+			<Route path="/maquinas/:assetId" element={<AssetDetails />} />
 			<Route path="/empresas" element={<Companies />} />
 			<Route path="/unidades" element={<Units />} />
 			<Route path="/unidades/:unityId" element={<UnitDetails />} />

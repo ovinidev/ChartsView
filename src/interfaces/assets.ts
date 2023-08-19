@@ -1,6 +1,6 @@
 interface HealthHistoryItem {
 	status: string;
-	timestamp: string;
+	timestamp: Date;
 }
 
 interface Metrics {

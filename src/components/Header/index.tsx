@@ -14,7 +14,7 @@ export const Header = () => {
 			w="100%"
 			justify="space-between"
 			align="center"
-			px="2rem"
+			px={{ base: "1rem", "4xl": "2rem" }}
 		>
 			<Link to="/">
 				<svg width="177" height="25" viewBox="0 0 177 25" fill="#fff">
