@@ -19,7 +19,7 @@ export const useCompanies = () => {
 
 export const useCompanyById = (id: string) => {
 	return useQuery(
-		[COMPANIES],
+		[COMPANIES, { id }],
 		async () => {
 			const data = await getCompanyById(id);
 

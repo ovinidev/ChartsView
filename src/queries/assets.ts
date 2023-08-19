@@ -19,7 +19,7 @@ export const useAssets = () => {
 
 export const useAssetById = (id: string) => {
 	return useQuery(
-		[ASSETS],
+		[ASSETS, { id }],
 		async () => {
 			const data = await getAssetById(id);
 

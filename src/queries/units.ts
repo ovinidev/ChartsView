@@ -19,7 +19,7 @@ export const useUnits = () => {
 
 export const useUnitById = (id: string) => {
 	return useQuery(
-		[UNITS],
+		[UNITS, { id }],
 		async () => {
 			const data = await getUnitById(id);
 

@@ -19,7 +19,7 @@ export const useWorkOrders = () => {
 
 export const useWorkOrderById = (id: string) => {
 	return useQuery(
-		[WORKORDERS],
+		[WORKORDERS, { id }],
 		async () => {
 			const data = await getWorkOrderById(id);
 

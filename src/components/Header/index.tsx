@@ -1,11 +1,11 @@
-import { Flex, HStack, Icon, IconButton, Image } from "@chakra-ui/react";
+import { Flex, HStack, Icon, IconButton } from "@chakra-ui/react";
 import { HeaderLink } from "./HeaderLink";
 import { Link } from "react-router-dom";
 import { useSidebar } from "@contexts/useSidebar";
 import { AiOutlineMenu } from "react-icons/ai";
 
 export const Header = () => {
-	const { isDesktop, isMobile, onOpen } = useSidebar();
+	const { isDesktop, onOpen } = useSidebar();
 
 	return (
 		<Flex
@@ -23,11 +23,13 @@ export const Header = () => {
 			</Link>
 
 			{isDesktop ? (
-				<HStack>
+				<HStack spacing="2">
 					<HeaderLink href="/" name="Início" />
+					<HeaderLink href="/maquinas" name="Máquinas" />
 					<HeaderLink href="/usuarios" name="Usuários" />
 					<HeaderLink href="/empresas" name="Empresas" />
 					<HeaderLink href="/unidades" name="Unidades" />
+					<HeaderLink href="/servicos" name="Serviços" />
 				</HStack>
 			) : (
 				<IconButton

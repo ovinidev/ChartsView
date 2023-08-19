@@ -19,7 +19,7 @@ export const useUsers = () => {
 
 export const useUserById = (id: string) => {
 	return useQuery(
-		[USERS],
+		[USERS, { id }],
 		async () => {
 			const data = await getUserById(id);
 

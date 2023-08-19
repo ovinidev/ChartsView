@@ -21,12 +21,12 @@ export const SidebarProvider = ({ children }: SidebarProviderProps) => {
 
 	const isMobile = useBreakpointValue({
 		base: true,
-		"2xl": false,
+		"4xl": false,
 	});
 
 	const isDesktop = useBreakpointValue({
 		base: false,
-		"2xl": true,
+		"4xl": true,
 	});
 
 	const { pathname } = useLocation();
