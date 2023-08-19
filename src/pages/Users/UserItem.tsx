@@ -11,7 +11,7 @@ export const UserItem = ({ data }: UserItemProps) => {
 	const navigate = useNavigate();
 
 	return (
-		<TRead onClick={() => navigate(`/unidades/${data.id}`)}>
+		<TRead onClick={() => navigate(`/usuarios/${data.id}`)}>
 			<TData>{data.name}</TData>
 			<TData>{data.email}</TData>
 		</TRead>
