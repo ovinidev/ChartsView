@@ -2,11 +2,13 @@ import { Asset } from "@interfaces/assets";
 import Highcharts from "highcharts";
 import { HighchartsReact } from "highcharts-react-official";
 
-interface HealthHistoryChartsProps {
+interface HealthStatusHistoryChartProps {
 	data: Asset;
 }
 
-export const HealthHistoryCharts = ({ data }: HealthHistoryChartsProps) => {
+export const HealthStatusHistoryChart = ({
+	data,
+}: HealthStatusHistoryChartProps) => {
 	const categories = [
 		"inOperation",
 		"inDowntime",
@@ -31,7 +33,7 @@ export const HealthHistoryCharts = ({ data }: HealthHistoryChartsProps) => {
 
 	const options = {
 		title: {
-			text: "Saúde da máquina ao longo do tempo",
+			text: "Status da máquina ao longo do tempo",
 		},
 		xAxis: {
 			categories: healthHistoryTime,
@@ -46,8 +48,10 @@ export const HealthHistoryCharts = ({ data }: HealthHistoryChartsProps) => {
 			{
 				name: data?.name,
 				data: healthHistoryStatus,
+				color: "#1E3A8A",
 			},
 		],
 	};
+
 	return <HighchartsReact highcharts={Highcharts} options={options} />;
 };

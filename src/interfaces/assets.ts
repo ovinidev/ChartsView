@@ -4,7 +4,7 @@ interface HealthHistoryItem {
 }
 
 interface Metrics {
-	lastUptimeAt: string;
+	lastUptimeAt: Date;
 	totalCollectsUptime: number;
 	totalUptime: number;
 }
