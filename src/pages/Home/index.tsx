@@ -1,14 +1,26 @@
-import { Flex, Heading, Stack } from "@chakra-ui/react";
+import {
+	Flex,
+	Heading,
+	Stack,
+	Table,
+	Thead,
+	Tbody,
+	Tr,
+	TableCaption,
+} from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useWorkOrders } from "@queries/workorders";
-import { WorkOrderStatusItem } from "./WorkOrderStatusItem";
+import { AssetStatusCountItem } from "./AssetStatusCountItem";
 import { useAssets } from "@queries/assets";
 import { AssetStatusChart } from "@components/Charts/AssetStatusChart";
+import { TableContainer } from "@components/Table/TableContainer";
+import { THead } from "@components/Table/THead";
+import { TData } from "@components/Table/TData";
 
 export default function Home() {
 	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders();
-	const { data: assets, isLoading: isAssetsLoading } = useAssets();
+	const { data: assets } = useAssets();
 
 	const completedCount = workOrders?.filter(
 		(workOrder) => workOrder.status === "completed",
@@ -23,7 +35,7 @@ export default function Home() {
 	).length;
 
 	return (
-		<Flex direction="column">
+		<Flex direction="column" pb="2rem">
 			<Header />
 
 			<Stack spacing="12">
@@ -37,19 +49,48 @@ export default function Home() {
 						justify="center"
 						align="center"
 					>
-						<WorkOrderStatusItem
+						<AssetStatusCountItem
 							title="Completados"
 							statusCount={completedCount}
 						/>
-						<WorkOrderStatusItem
+						<AssetStatusCountItem
 							title="Em progresso"
 							statusCount={inProgressCount}
 						/>
-						<WorkOrderStatusItem title="Falhos" statusCount={failedCount} />
+						<AssetStatusCountItem title="Falhos" statusCount={failedCount} />
 					</Flex>
 				)}
 
-				{assets && <AssetStatusChart data={assets} />}
+				<Flex
+					direction={{ base: "column", "4xl": "row" }}
+					align={{ base: "", "4xl": "center" }}
+					justify="center"
+				>
+					{assets && <AssetStatusChart data={assets} />}
+
+					<TableContainer align="center">
+						<Table variant="striped" size="lg">
+							<Thead>
+								<Tr>
+									<THead>Nome</THead>
+									<THead>Modelo</THead>
+									<THead>Saúde</THead>
+								</Tr>
+							</Thead>
+							<Tbody>
+								{assets?.map((asset) => {
+									return (
+										<Tr key={asset.id}>
+											<TData>{asset.name}</TData>
+											<TData>{asset.model}</TData>
+											<TData>{asset.healthscore}%</TData>
+										</Tr>
+									);
+								})}
+							</Tbody>
+						</Table>
+					</TableContainer>
+				</Flex>
 			</Stack>
 
 			<NavigationDrawer />

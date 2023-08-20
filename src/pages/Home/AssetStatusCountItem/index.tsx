@@ -1,14 +1,14 @@
 import { Center, Stack, Text } from "@chakra-ui/react";
 
-interface WorkOrderStatusItemProps {
+interface AssetStatusCountItemProps {
 	title: string;
 	statusCount?: number;
 }
 
-export const WorkOrderStatusItem = ({
+export const AssetStatusCountItem = ({
 	title,
 	statusCount,
-}: WorkOrderStatusItemProps) => {
+}: AssetStatusCountItemProps) => {
 	return (
 		<Center
 			as="section"
