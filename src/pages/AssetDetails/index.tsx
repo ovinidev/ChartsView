@@ -25,7 +25,11 @@ export default function AssetDetails() {
 					<Heading>Carregando</Heading>
 				) : (
 					<Stack spacing="8" p={{ base: "1.5rem", "2xl": "2rem" }}>
-						<HStack spacing="8" align="flex-start">
+						<Flex
+							direction={{ base: "column", "4xl": "row" }}
+							gap="8"
+							align="flex-start"
+						>
 							<Image w="20rem" src={asset?.image} alt="asset image" />
 
 							<Stack fontWeight={400} fontSize="24">
@@ -54,7 +58,8 @@ export default function AssetDetails() {
 									<Text>RPM: {asset?.specifications.rpm}</Text>
 								)}
 							</Stack>
-						</HStack>
+						</Flex>
+
 						{asset && <HealthStatusHistoryChart data={asset} />}
 						{asset && <HealthScoreHistoryChart data={asset} />}
 					</Stack>
