@@ -11,6 +11,7 @@ import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { useSidebar } from "@contexts/useSidebar";
 import { Pagination } from "@components/Pagination";
+import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 
 export default function WorkOrders() {
 	const { inputSearch, handleChangeDebounce } = useSearch();
@@ -21,30 +22,32 @@ export default function WorkOrders() {
 		<Flex direction="column">
 			<Header />
 
-			<Title>Serviços</Title>
+			<AnimateOnRender>
+				<Title>Ordens de Serviços</Title>
 
-			{isLoading ? (
-				<ListSkeleton isLoading={isLoading} />
-			) : (
-				<TableContainer>
-					<InputSearch handleChange={handleChangeDebounce} />
+				{isLoading ? (
+					<ListSkeleton isLoading={isLoading} />
+				) : (
+					<TableContainer>
+						<InputSearch handleChange={handleChangeDebounce} />
 
-					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
-						<Thead>
-							<Tr>
-								<THead>Título</THead>
-								{isDesktop && <THead>Descrição</THead>}
-								<THead>Status</THead>
-							</Tr>
-						</Thead>
-						<Tbody>
-							{workOrders?.map((unit) => {
-								return <WorkOrderItem key={unit.id} data={unit} />;
-							})}
-						</Tbody>
-					</Table>
-				</TableContainer>
-			)}
+						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
+							<Thead>
+								<Tr>
+									<THead>Título</THead>
+									{isDesktop && <THead>Descrição</THead>}
+									<THead>Status</THead>
+								</Tr>
+							</Thead>
+							<Tbody>
+								{workOrders?.map((unit) => {
+									return <WorkOrderItem key={unit.id} data={unit} />;
+								})}
+							</Tbody>
+						</Table>
+					</TableContainer>
+				)}
+			</AnimateOnRender>
 
 			<Pagination
 				mt="2rem"
@@ -54,6 +57,7 @@ export default function WorkOrders() {
 				pageLength={5}
 				totalItems={5}
 			/>
+
 			<NavigationDrawer />
 		</Flex>
 	);

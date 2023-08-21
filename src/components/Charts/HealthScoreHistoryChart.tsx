@@ -38,6 +38,7 @@ export const HealthScoreHistoryChart = ({
 	const options = {
 		chart: {
 			type: "area",
+			zoomType: "x",
 		},
 		title: {
 			text: "Saúde da máquina ao longo do tempo",

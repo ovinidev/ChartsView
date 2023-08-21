@@ -32,6 +32,9 @@ export const HealthStatusHistoryChart = ({
 	});
 
 	const options = {
+		chart: {
+			zoomType: "xy",
+		},
 		title: {
 			text: "Status da máquina ao longo do tempo",
 		},

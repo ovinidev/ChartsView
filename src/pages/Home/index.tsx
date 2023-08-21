@@ -8,6 +8,7 @@ import { AssetStatusChart } from "@components/Charts/AssetStatusChart";
 import { AssetsStatusContainer } from "./AssetsStatusContainer";
 import { AssetStatusCountSkeleton } from "./AssetStatusCountItem/AssetStatusCountSkeleton";
 import { AssetsHealthTable } from "./AssetsHealthTable";
+import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 
 export default function Home() {
 	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders({
@@ -31,35 +32,37 @@ export default function Home() {
 		<Flex direction="column" pb="2rem">
 			<Header />
 
-			<Stack spacing="12">
-				{isWorkOrdersLoading ? (
-					<AssetStatusCountSkeleton isLoading={isWorkOrdersLoading} />
-				) : (
-					<AssetsStatusContainer>
-						<AssetStatusCountItem
-							title="Completados"
-							statusCount={completedCount}
-						/>
-						<AssetStatusCountItem
-							title="Em progresso"
-							statusCount={inProgressCount}
-						/>
-						<AssetStatusCountItem title="Falhos" statusCount={failedCount} />
-					</AssetsStatusContainer>
-				)}
+			<AnimateOnRender>
+				<Stack spacing="12">
+					{isWorkOrdersLoading ? (
+						<AssetStatusCountSkeleton isLoading={isWorkOrdersLoading} />
+					) : (
+						<AssetsStatusContainer>
+							<AssetStatusCountItem
+								title="Completados"
+								statusCount={completedCount}
+							/>
+							<AssetStatusCountItem
+								title="Em progresso"
+								statusCount={inProgressCount}
+							/>
+							<AssetStatusCountItem title="Falhos" statusCount={failedCount} />
+						</AssetsStatusContainer>
+					)}
 
-				<Flex
-					direction={{ base: "column", "4xl": "row" }}
-					align={{ base: "", "4xl": "center" }}
-					justify="center"
-				>
-					{assets && <AssetStatusChart data={assets} />}
+					<Flex
+						direction={{ base: "column", "4xl": "row" }}
+						align={{ base: "", "4xl": "center" }}
+						justify="center"
+					>
+						{assets && <AssetStatusChart data={assets} />}
 
-					<AssetsHealthTable />
-				</Flex>
-			</Stack>
+						<AssetsHealthTable />
+					</Flex>
+				</Stack>
 
-			<NavigationDrawer />
+				<NavigationDrawer />
+			</AnimateOnRender>
 		</Flex>
 	);
 }

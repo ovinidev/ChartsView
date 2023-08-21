@@ -10,6 +10,7 @@ import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
 import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { Pagination } from "@components/Pagination";
+import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 
 export default function Units() {
 	const { inputSearch, handleChangeDebounce } = useSearch();
@@ -19,30 +20,32 @@ export default function Units() {
 		<Flex direction="column">
 			<Header />
 
-			<Title>Máquinas</Title>
+			<AnimateOnRender>
+				<Title>Máquinas</Title>
 
-			{isLoading ? (
-				<ListSkeleton isLoading={isLoading} />
-			) : (
-				<TableContainer>
-					<InputSearch handleChange={handleChangeDebounce} />
+				{isLoading ? (
+					<ListSkeleton isLoading={isLoading} />
+				) : (
+					<TableContainer>
+						<InputSearch handleChange={handleChangeDebounce} />
 
-					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
-						<Thead>
-							<Tr>
-								<THead>Nome</THead>
-								<THead>Status</THead>
-								<THead>Saúde</THead>
-							</Tr>
-						</Thead>
-						<Tbody>
-							{assets?.map((asset) => {
-								return <AssetItem key={asset.id} data={asset} />;
-							})}
-						</Tbody>
-					</Table>
-				</TableContainer>
-			)}
+						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
+							<Thead>
+								<Tr>
+									<THead>Nome</THead>
+									<THead>Status</THead>
+									<THead>Saúde</THead>
+								</Tr>
+							</Thead>
+							<Tbody>
+								{assets?.map((asset) => {
+									return <AssetItem key={asset.id} data={asset} />;
+								})}
+							</Tbody>
+						</Table>
+					</TableContainer>
+				)}
+			</AnimateOnRender>
 
 			<Pagination
 				mt="2rem"
