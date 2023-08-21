@@ -9,6 +9,7 @@ import { Title } from "@components/Title";
 import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
 import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
+import { Pagination } from "@components/Pagination";
 
 export default function Units() {
 	const { inputSearch, handleChangeDebounce } = useSearch();
@@ -42,6 +43,14 @@ export default function Units() {
 				</TableContainer>
 			)}
 
+			<Pagination
+				mt="2rem"
+				alignSelf="center"
+				isLoading={isLoading}
+				page={1}
+				pageLength={5}
+				totalItems={5}
+			/>
 			<NavigationDrawer />
 		</Flex>
 	);

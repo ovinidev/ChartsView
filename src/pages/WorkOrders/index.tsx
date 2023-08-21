@@ -10,6 +10,7 @@ import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
 import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { useSidebar } from "@contexts/useSidebar";
+import { Pagination } from "@components/Pagination";
 
 export default function WorkOrders() {
 	const { inputSearch, handleChangeDebounce } = useSearch();
@@ -45,6 +46,14 @@ export default function WorkOrders() {
 				</TableContainer>
 			)}
 
+			<Pagination
+				mt="2rem"
+				alignSelf="center"
+				isLoading={isLoading}
+				page={1}
+				pageLength={5}
+				totalItems={5}
+			/>
 			<NavigationDrawer />
 		</Flex>
 	);
