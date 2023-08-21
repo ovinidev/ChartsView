@@ -1,6 +1,6 @@
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex, Td } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex, Th } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { useCompanies } from "@queries/companies";
 import { CompanyItem } from "./CompanyItem";
@@ -62,7 +62,7 @@ export default function Companies() {
 								<Tr>
 									<THead>Id</THead>
 									<THead>Nome</THead>
-									<Td></Td>
+									<Th></Th>
 								</Tr>
 							</Thead>
 							<Tbody>

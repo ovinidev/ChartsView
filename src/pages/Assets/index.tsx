@@ -1,6 +1,6 @@
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex, Td } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex, Th } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { AssetItem } from "./AssetItem";
 import { useAssets } from "@queries/assets";
@@ -63,7 +63,7 @@ export default function Units() {
 									<THead>Nome</THead>
 									<THead>Status</THead>
 									<THead>Saúde</THead>
-									<Td></Td>
+									<Th></Th>
 								</Tr>
 							</Thead>
 							<Tbody>

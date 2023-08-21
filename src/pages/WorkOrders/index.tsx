@@ -1,6 +1,6 @@
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex, Td } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex, Th } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { TableContainer } from "@components/Table/TableContainer";
 import { Title } from "@components/Title";
@@ -64,7 +64,7 @@ export default function WorkOrders() {
 									<THead>Título</THead>
 									{isDesktop && <THead>Descrição</THead>}
 									<THead>Status</THead>
-									<Td></Td>
+									<Th></Th>
 								</Tr>
 							</Thead>
 							<Tbody>
