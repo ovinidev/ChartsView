@@ -12,7 +12,7 @@ import { useSearch } from "@hooks/useSearch";
 import { Pagination } from "@components/Pagination";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import { ModalAction, useModal } from "@hooks/useModal";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { User } from "@interfaces/users";
 import { CreateUserModal } from "@components/Modals/Users/CreateUserModal";
 import { UpdateUserModal } from "@components/Modals/Users/UpdateUserModal";
@@ -29,9 +29,9 @@ export default function Units() {
 
 	const { mutateAsync: deleteUser } = useDeleteUser();
 
-	const handleDeleteUser = async () => {
+	const handleDeleteUser = useCallback(async () => {
 		await deleteUser(user);
-	};
+	}, []);
 
 	return (
 		<Flex direction="column">
