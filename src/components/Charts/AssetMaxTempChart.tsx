@@ -44,7 +44,7 @@ export const AssetMaxTempChart = ({ data }: AssetMaxTempChartProps) => {
 		},
 		yAxis: {
 			title: {
-				text: "Status",
+				text: "Temperatura °C",
 			},
 			categories: generateRandomMaxTempBasedOnMaxTemp(),
 		},

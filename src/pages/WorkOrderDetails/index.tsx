@@ -13,6 +13,8 @@ export default function WorkOrderDetails() {
 
 	return (
 		<Flex direction="column">
+			<title>{workOrder?.title}</title>
+
 			<Header />
 
 			<AnimateOnRender>

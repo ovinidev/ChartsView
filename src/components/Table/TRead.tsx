@@ -11,7 +11,7 @@ export const TRead = ({ children, ...rest }: TReadProps) => {
 			transition="all 0.5s ease"
 			cursor="pointer"
 			_hover={{
-				background: "gray.100",
+				background: "gray.300",
 			}}
 			{...rest}
 		>

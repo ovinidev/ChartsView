@@ -31,12 +31,14 @@ export default function UserDetails() {
 
 	return (
 		<Flex direction="column">
+			<title>{user?.name}</title>
+
 			<Header />
 
 			<AnimateOnRender>
 				<BackButton />
 
-				<Flex direction="column">
+				<Flex direction="column" align="center">
 					{isLoading ? (
 						<UserDetailsSkeleton isLoading={isLoading} />
 					) : (
@@ -50,10 +52,10 @@ export default function UserDetails() {
 									color="gray.800"
 								>
 									<Text fontSize={{ base: "24", "2xl": "36" }} fontWeight={400}>
-										Nome: {user?.name}
+										{user?.name}
 									</Text>
 									<Text fontSize={{ base: "24", "2xl": "36" }} fontWeight={400}>
-										Email: {user?.email}
+										{user?.email}
 									</Text>
 								</Stack>
 							</Flex>

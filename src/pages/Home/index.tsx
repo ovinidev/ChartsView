@@ -31,6 +31,8 @@ export default function Home() {
 
 	return (
 		<Flex direction="column" pb="2rem">
+			<title>Início</title>
+
 			<Header />
 
 			<AnimateOnRender>

@@ -48,7 +48,7 @@ export const AssetHealthScoreHistoryChart = ({
 		},
 		yAxis: {
 			title: {
-				text: "Status",
+				text: "Saúde",
 			},
 		},
 		series: [

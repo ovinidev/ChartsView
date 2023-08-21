@@ -30,7 +30,7 @@ export const HealthStatusTimeLine = () => {
 					<StepIndicator bg="#D9D9D9" border="none" />
 
 					<Flex direction="column" color="gray.800">
-						<Text fontSize="1.25rem">Status: {asset.status}</Text>
+						<Text fontSize="1.25rem">{asset.status}</Text>
 						<Text fontSize="1rem">
 							em{" "}
 							{new Date(asset.timestamp).toLocaleDateString("pt-BR", {

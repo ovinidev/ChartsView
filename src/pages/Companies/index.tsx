@@ -35,6 +35,8 @@ export default function Companies() {
 
 	return (
 		<Flex direction="column">
+			<title>Empresas</title>
+
 			<Header />
 
 			<AnimateOnRender>

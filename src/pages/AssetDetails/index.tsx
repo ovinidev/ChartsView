@@ -24,6 +24,7 @@ export default function AssetDetails() {
 
 	return (
 		<Flex direction="column">
+			<title>{asset?.name}</title>
 			<Header />
 
 			<AnimateOnRender>
@@ -96,12 +97,17 @@ export default function AssetDetails() {
 							</Flex>
 						</Stack>
 					)}
-				</Flex>
 
-				<Stack mt="2rem" spacing="4" px={{ base: "0", "4xl": "5rem" }}>
-					{asset && <AssetMaxTempChart data={asset} />}
-					{asset && <AssetHealthScoreHistoryChart data={asset} />}
-				</Stack>
+					<Stack
+						w={{ base: "90%", "4xl": "66rem" }}
+						mt="2rem"
+						spacing="4"
+						px={{ base: "0", "4xl": "5rem" }}
+					>
+						{asset && <AssetMaxTempChart data={asset} />}
+						{asset && <AssetHealthScoreHistoryChart data={asset} />}
+					</Stack>
+				</Flex>
 
 				<NavigationDrawer />
 				<TimelineDrawer isOpen={isOpen} onClose={onClose} />

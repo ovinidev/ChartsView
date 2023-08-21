@@ -35,6 +35,8 @@ export default function Units() {
 
 	return (
 		<Flex direction="column">
+			<title>Usuários</title>
+
 			<Header />
 
 			<AnimateOnRender>

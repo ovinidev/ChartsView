@@ -36,6 +36,8 @@ export default function WorkOrders() {
 	};
 	return (
 		<Flex direction="column">
+			<title>Ordens de Serviço</title>
+
 			<Header />
 
 			<AnimateOnRender>

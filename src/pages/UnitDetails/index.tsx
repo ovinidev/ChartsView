@@ -25,6 +25,8 @@ export default function UnitDetails() {
 
 	return (
 		<Flex direction="column">
+			<title>{unit?.name}</title>
+
 			<Header />
 
 			<AnimateOnRender>
