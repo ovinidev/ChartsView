@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { Table, Thead, Tbody, Tr, Flex, Td } from "@chakra-ui/react";
@@ -15,27 +14,20 @@ import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import { ModalAction, useModal } from "@hooks/useModal";
 import { useState } from "react";
 import { User } from "@interfaces/users";
-import { CreateUserModal } from "@components/Modals/CreateUserModal";
+import { CreateUserModal } from "@components/Modals/Users/CreateUserModal";
+import { UpdateUserModal } from "@components/Modals/Users/UpdateUserModal";
 import { Button } from "@components/Buttons/Button";
 import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
-import { useMutation } from "@tanstack/react-query";
-import { USERS } from "@constants/entities";
-import { queryClient } from "@services/queryClient";
-import { UpdateUserModal } from "@components/Modals/UpdateUserModal";
+import { useDeleteUser } from "@mutations/users";
 
 export default function Units() {
 	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
+
 	const [user, setUser] = useState({} as User);
 	const { data: users, isLoading } = useUsers({ name: inputSearch });
 
-	const { mutateAsync: deleteUser } = useMutation(async (data: User) => data, {
-		onSuccess: (data) => {
-			const usersNotBeDelete = users?.filter((user) => user.id !== data.id);
-
-			queryClient.setQueryData([USERS], () => usersNotBeDelete);
-		},
-	});
+	const { mutateAsync: deleteUser } = useDeleteUser();
 
 	const handleDeleteUser = async () => {
 		await deleteUser(user);

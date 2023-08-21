@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	Modal,
 	ModalOverlay,
@@ -11,61 +10,29 @@ import {
 import { Input } from "@components/Form/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { USERS } from "@constants/entities";
-import { queryClient } from "@services/queryClient";
+import { createUserSchema } from "@validations/users/createUserSchema";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
-import { useUsers } from "@queries/users";
-import { User } from "@interfaces/users";
-import { updateUserSchema } from "@validations/updateUserSchema";
+import { CreateUserProps, useCreateUser } from "@mutations/users";
 
-interface UpdateUserModalProps {
-	userData: User;
+interface CreateUserModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 }
 
-export const UpdateUserModal = ({
-	userData,
-	isOpen,
-	onClose,
-}: UpdateUserModalProps) => {
+export const CreateUserModal = ({ isOpen, onClose }: CreateUserModalProps) => {
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<User>({
-		resolver: zodResolver(updateUserSchema),
+	} = useForm<CreateUserProps>({
+		resolver: zodResolver(createUserSchema),
 	});
 
-	const { data: users } = useUsers({ name: "" });
+	const { mutateAsync: createUser, isLoading } = useCreateUser();
 
-	const { mutateAsync: createUser, isLoading } = useMutation(
-		async (data: User) => {
-			return {
-				...userData,
-				name: data.name ? data.name : userData.name,
-				email: data.email ? data.email : userData.name,
-			};
-		},
-		{
-			onSuccess: (data) => {
-				const userToEditIndex = users?.findIndex(
-					(user) => user.id === userData.id,
-				);
-
-				if (users && userToEditIndex !== undefined) {
-					users[userToEditIndex] = data;
-
-					queryClient.setQueryData([USERS], () => users);
-				}
-			},
-		},
-	);
-
-	const onSubmit: SubmitHandler<User> = async (data) => {
+	const onSubmit: SubmitHandler<CreateUserProps> = async (data) => {
 		await createUser(data);
 
 		handleCloseModal();
@@ -81,7 +48,7 @@ export const UpdateUserModal = ({
 			<ModalOverlay bg="modalOverlay" />
 			<ModalContent w="90%" bg="white">
 				<ModalHeader fontSize={{ base: "16", "4xl": "22" }}>
-					Editar Usuário
+					Novo Usuário
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
@@ -92,13 +59,13 @@ export const UpdateUserModal = ({
 						pb="2rem"
 					>
 						<Input
-							{...register("name", { required: false })}
+							{...register("name")}
 							error={errors.name}
 							label="Nome"
 							w="100%"
 						/>
 						<Input
-							{...register("email", { required: false })}
+							{...register("email")}
 							error={errors.email}
 							label="Email"
 							w="100%"
@@ -112,7 +79,7 @@ export const UpdateUserModal = ({
 								color="#FFF"
 								isLoading={isLoading}
 								type="submit"
-								text="Editar"
+								text="Adicionar"
 							/>
 						</ButtonContainer>
 					</Stack>

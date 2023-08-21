@@ -37,7 +37,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 					color: "dark.10",
 				}}
 				borderRadius="8px"
-				size={{ base: "sm", "4xl": "lg" }}
+				size={{ base: "md", "4xl": "lg" }}
 				w={{ base: 150, md: 180 }}
 				focusBorderColor="gray.600"
 				transition="all 0.5s ease"
