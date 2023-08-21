@@ -7,9 +7,3 @@ export const getCompanies = async () => {
 
 	return data;
 };
-
-export const getCompanyById = async (id: string) => {
-	const { data } = await axiosInstance.get<Company>(`${COMPANIES}/${id}`);
-
-	return data;
-};

@@ -1,4 +1,4 @@
-import { getCompanies, getCompanyById } from "@api/companies";
+import { getCompanies } from "@api/companies";
 import { COMPANIES } from "@constants/entities";
 import { STALE_TIME } from "@constants/staleTime";
 import { useQuery } from "@tanstack/react-query";
@@ -22,22 +22,8 @@ export const useCompanies = ({ name }: UseCompaniesProps) => {
 					if (name.length === 0) return company;
 					return company.name
 						.toLocaleLowerCase()
-						.startsWith(name.toLocaleLowerCase());
+						.includes(name.toLocaleLowerCase());
 				}),
-		},
-	);
-};
-
-export const useCompanyById = (id: string) => {
-	return useQuery(
-		[COMPANIES, { id }],
-		async () => {
-			const data = await getCompanyById(id);
-
-			return data;
-		},
-		{
-			staleTime: STALE_TIME,
 		},
 	);
 };

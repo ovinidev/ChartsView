@@ -1,6 +1,6 @@
 import { Dispatch, useReducer } from "react";
 
-export interface State {
+interface State {
 	modalDelete: boolean;
 	modalEdit: boolean;
 	modalAdd: boolean;

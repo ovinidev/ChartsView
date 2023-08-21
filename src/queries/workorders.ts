@@ -22,7 +22,7 @@ export const useWorkOrders = ({ title }: UseWorkOrdersProps) => {
 					if (title.length === 0) return workOrder;
 					return workOrder.title
 						.toLocaleLowerCase()
-						.startsWith(title.toLocaleLowerCase());
+						.includes(title.toLocaleLowerCase());
 				}),
 		},
 	);

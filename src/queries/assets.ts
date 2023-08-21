@@ -22,7 +22,7 @@ export const useAssets = ({ name }: UseAssetsProps) => {
 					if (name.length === 0) return asset;
 					return asset.name
 						.toLocaleLowerCase()
-						.startsWith(name.toLocaleLowerCase());
+						.includes(name.toLocaleLowerCase());
 				}),
 		},
 	);

@@ -8,7 +8,12 @@ export const AssetDetailsSkeleton = ({
 	isLoading,
 }: AssetDetailsSkeletonProps) => {
 	return (
-		<Stack spacing="8" p={{ base: "1.5rem", "2xl": "2rem" }}>
+		<Stack
+			align="center"
+			spacing="8"
+			p={{ base: "1.5rem", "2xl": "2rem" }}
+			w="100%"
+		>
 			<Flex
 				direction={{ base: "column", "4xl": "row" }}
 				gap="8"

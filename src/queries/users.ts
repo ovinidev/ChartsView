@@ -22,7 +22,7 @@ export const useUsers = ({ name }: UseUsersProps) => {
 					if (name.length === 0) return unit;
 					return unit.name
 						.toLocaleLowerCase()
-						.startsWith(name.toLocaleLowerCase());
+						.includes(name.toLocaleLowerCase());
 				}),
 		},
 	);
