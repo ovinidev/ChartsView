@@ -6,7 +6,6 @@ import {
 	Thead,
 	Tbody,
 	Tr,
-	TableCaption,
 } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
