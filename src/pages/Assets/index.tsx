@@ -17,6 +17,8 @@ import { Asset } from "@interfaces/assets";
 import { Button } from "@components/Buttons/Button";
 import { CreateAssetModal } from "@components/Modals/Assets/CreateAssetModal";
 import { UpdateAssetModal } from "@components/Modals/Assets/UpdateAssetModal";
+import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
+import { useDeleteAsset } from "@mutations/assets";
 
 export default function Units() {
 	const { dispatch, state } = useModal();
@@ -24,6 +26,12 @@ export default function Units() {
 
 	const [asset, setAsset] = useState({} as Asset);
 	const { data: assets, isLoading } = useAssets({ name: inputSearch });
+
+	const { mutateAsync: deleteAsset } = useDeleteAsset();
+
+	const handleDeleteAsset = async () => {
+		await deleteAsset(asset);
+	};
 
 	return (
 		<Flex direction="column">
@@ -92,6 +100,14 @@ export default function Units() {
 			<UpdateAssetModal
 				assetData={asset}
 				isOpen={state.modalEdit}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<DeleteConfirmationModal
+				onDeleteRequest={handleDeleteAsset}
+				title="Deletar máquina"
+				description="Tem certeza que deseja deletar a máquina?"
+				isOpen={state.modalDelete}
 				onClose={() => dispatch({ type: ModalAction.CLOSE })}
 			/>
 		</Flex>

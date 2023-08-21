@@ -16,6 +16,10 @@ import { ModalAction, useModal } from "@hooks/useModal";
 import { useState } from "react";
 import { WorkOrder } from "@interfaces/workorders";
 import { Button } from "@components/Buttons/Button";
+import { CreateWorkOrderModal } from "@components/Modals/Workorders/CreateWorkOrderModal";
+import { UpdateWorkOrderModal } from "@components/Modals/Workorders/UpdateWorkOrderModal";
+import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
+import { useDeleteWorkOrders } from "@mutations/workorders";
 
 export default function WorkOrders() {
 	const { isDesktop } = useSidebar();
@@ -25,6 +29,11 @@ export default function WorkOrders() {
 	const [workOrder, setWorkOrder] = useState({} as WorkOrder);
 	const { data: workOrders, isLoading } = useWorkOrders({ title: inputSearch });
 
+	const { mutateAsync: deleteWorkOrder } = useDeleteWorkOrders();
+
+	const handleDeleteWorkOrder = async () => {
+		await deleteWorkOrder(workOrder);
+	};
 	return (
 		<Flex direction="column">
 			<Header />
@@ -83,6 +92,25 @@ export default function WorkOrders() {
 			/>
 
 			<NavigationDrawer />
+
+			<CreateWorkOrderModal
+				isOpen={state.modalAdd}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<UpdateWorkOrderModal
+				workOrderData={workOrder}
+				isOpen={state.modalEdit}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<DeleteConfirmationModal
+				title="Deletar ordem de serviço"
+				description="Tem Certeza que deseja deletar a  ordem de serviço?"
+				onDeleteRequest={handleDeleteWorkOrder}
+				isOpen={state.modalDelete}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
 		</Flex>
 	);
 }
