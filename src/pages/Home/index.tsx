@@ -9,6 +9,7 @@ import { AssetsStatusContainer } from "./AssetsStatusContainer";
 import { AssetStatusCountSkeleton } from "./AssetStatusCountItem/AssetStatusCountSkeleton";
 import { AssetsHealthTable } from "./AssetsHealthTable";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
+import { AssetsHealthScoreChart } from "@components/Charts/AssetsHealthScoreChart";
 
 export default function Home() {
 	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders({
@@ -54,11 +55,14 @@ export default function Home() {
 						direction={{ base: "column", "4xl": "row" }}
 						align={{ base: "", "4xl": "center" }}
 						justify="center"
+						gap="12"
 					>
 						{assets && <AssetStatusChart data={assets} />}
 
 						<AssetsHealthTable />
 					</Flex>
+
+					{assets && <AssetsHealthScoreChart data={assets} />}
 				</Stack>
 
 				<NavigationDrawer />

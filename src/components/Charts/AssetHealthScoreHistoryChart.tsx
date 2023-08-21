@@ -3,13 +3,13 @@ import Highcharts from "highcharts";
 import { HighchartsReact } from "highcharts-react-official";
 import { useEffect, useState } from "react";
 
-interface HealthScoreHistoryChartProps {
+interface AssetHealthScoreHistoryChartProps {
 	data: Asset;
 }
 
-export const HealthScoreHistoryChart = ({
+export const AssetHealthScoreHistoryChart = ({
 	data,
-}: HealthScoreHistoryChartProps) => {
+}: AssetHealthScoreHistoryChartProps) => {
 	const healthScoreDateHistory = [
 		"16/06/2023",
 		"09/07/2023",

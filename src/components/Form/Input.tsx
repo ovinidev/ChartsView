@@ -32,9 +32,9 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 				</FormLabel>
 			)}
 			<ChakraInput
-				border="0.5px solid #7A7C7F"
+				border="1px solid #000"
 				_placeholder={{
-					color: "dark.10",
+					color: "gray.100",
 				}}
 				borderRadius="8px"
 				size={{ base: "md", "4xl": "lg" }}

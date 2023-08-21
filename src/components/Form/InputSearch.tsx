@@ -20,15 +20,20 @@ export const InputSearch = ({ handleChange, ...rest }: InputSearchProps) => {
 		>
 			<InputLeftElement
 				pointerEvents="none"
-				children={<Icon fontSize="1.5rem" color="#B5B5B6" as={MdSearch} />}
+				children={<Icon fontSize="1.5rem" color="#4A5568" as={MdSearch} />}
 			/>
 
 			<Input
 				type="search"
+				border="1px solid #000"
 				onChange={(e) => handleChange(e.target.value)}
+				focusBorderColor="gray.900"
 				placeholder="O que procura?"
 				_placeholder={{
-					color: "#B5B5B6",
+					color: "gray.600",
+				}}
+				_hover={{
+					filter: "brightness(0.9)",
 				}}
 				borderRadius="8px"
 				{...rest}

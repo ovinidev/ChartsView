@@ -27,6 +27,7 @@ export const AssetStatusChart = ({ data }: AssetStatusChartProps) => {
 		chart: {
 			type: "pie",
 			zoomType: "x",
+			backgroundColor: "#EDF2F7",
 		},
 		title: {
 			text: "Status atual das máquinas",
