@@ -15,6 +15,10 @@ import { ModalAction, useModal } from "@hooks/useModal";
 import { useState } from "react";
 import { Unit } from "@interfaces/units";
 import { Button } from "@components/Buttons/Button";
+import { CreateUnitModal } from "@components/Modals/Units/CreateUnitModal";
+import { UpdateUnitModal } from "@components/Modals/Units/UpdateUnitModal";
+import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
+import { useDeleteUnit } from "@mutations/units";
 
 export default function Units() {
 	const { dispatch, state } = useModal();
@@ -22,6 +26,12 @@ export default function Units() {
 
 	const [unit, setUnit] = useState({} as Unit);
 	const { data: units, isLoading } = useUnits({ name: inputSearch });
+
+	const { mutateAsync: deleteUnit } = useDeleteUnit();
+
+	const handleDeleteUnit = async () => {
+		await deleteUnit(unit);
+	};
 
 	return (
 		<Flex direction="column">
@@ -80,6 +90,25 @@ export default function Units() {
 			/>
 
 			<NavigationDrawer />
+
+			<CreateUnitModal
+				isOpen={state.modalAdd}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<UpdateUnitModal
+				unitData={unit}
+				isOpen={state.modalEdit}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<DeleteConfirmationModal
+				title="Deletar unidade"
+				description="Tem Certeza que deseja deletar o unidade?"
+				onDeleteRequest={handleDeleteUnit}
+				isOpen={state.modalDelete}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
 		</Flex>
 	);
 }

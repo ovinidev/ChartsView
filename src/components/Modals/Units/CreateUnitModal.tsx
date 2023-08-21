@@ -8,43 +8,38 @@ import {
 	Stack,
 } from "@chakra-ui/react";
 import { Input } from "@components/Form/Input";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
-import { useState } from "react";
-import { CompanyProps, useUpdateCompany } from "@mutations/companies";
-import { Company } from "@interfaces/companies";
+import { createUnitSchema } from "@validations/createUnitSchema";
+import { UnitProps, useCreateUnit } from "@mutations/units";
 
-interface UpdateCompanyModalProps {
-	companyData: Company;
+interface CreateUnitModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 }
 
-export const UpdateCompanyModal = ({
-	companyData,
-	isOpen,
-	onClose,
-}: UpdateCompanyModalProps) => {
-	const [companyInput, setCompanyInput] = useState({} as CompanyProps);
+export const CreateUnitModal = ({ isOpen, onClose }: CreateUnitModalProps) => {
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<UnitProps>({
+		resolver: zodResolver(createUnitSchema),
+	});
+
+	const { mutateAsync: createUnit, isLoading } = useCreateUnit();
+
+	const onSubmit: SubmitHandler<UnitProps> = async (data) => {
+		await createUnit(data);
+		handleCloseModal();
+	};
 
 	const handleCloseModal = () => {
 		onClose();
-		setCompanyInput({
-			name: "",
-		});
-	};
-
-	const { mutateAsync: updateCompany, isLoading } = useUpdateCompany({
-		companyData,
-	});
-
-	const handleUpdateCompany = () => {
-		updateCompany({
-			...companyData,
-			name: companyInput.name,
-		});
-
-		handleCloseModal();
+		reset();
 	};
 
 	return (
@@ -52,18 +47,19 @@ export const UpdateCompanyModal = ({
 			<ModalOverlay bg="modalOverlay" />
 			<ModalContent w="90%" bg="white">
 				<ModalHeader fontSize={{ base: "16", "4xl": "22" }}>
-					Editar Usuário
+					Nova unidade
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
-					<Stack spacing="6" as="form" pb="2rem">
+					<Stack
+						spacing="6"
+						as="form"
+						onSubmit={handleSubmit(onSubmit)}
+						pb="2rem"
+					>
 						<Input
-							defaultValue={companyData.name}
-							onChange={(e) =>
-								setCompanyInput({
-									name: e.target.value,
-								})
-							}
+							{...register("name")}
+							error={errors.name}
 							label="Nome"
 							w="100%"
 						/>
@@ -75,9 +71,8 @@ export const UpdateCompanyModal = ({
 								bg="primary"
 								color="#FFF"
 								isLoading={isLoading}
-								type="button"
-								onClick={handleUpdateCompany}
-								text="Editar"
+								type="submit"
+								text="Adicionar"
 							/>
 						</ButtonContainer>
 					</Stack>

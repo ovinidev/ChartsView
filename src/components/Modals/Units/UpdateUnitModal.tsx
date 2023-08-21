@@ -11,37 +11,38 @@ import { Input } from "@components/Form/Input";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
 import { useState } from "react";
-import { CompanyProps, useUpdateCompany } from "@mutations/companies";
-import { Company } from "@interfaces/companies";
+import { CompanyProps } from "@mutations/companies";
+import { useUpdateUnit } from "@mutations/units";
+import { Unit } from "@interfaces/units";
 
-interface UpdateCompanyModalProps {
-	companyData: Company;
+interface UpdateUnitModalProps {
+	unitData: Unit;
 	isOpen: boolean;
 	onClose: () => void;
 }
 
-export const UpdateCompanyModal = ({
-	companyData,
+export const UpdateUnitModal = ({
+	unitData,
 	isOpen,
 	onClose,
-}: UpdateCompanyModalProps) => {
-	const [companyInput, setCompanyInput] = useState({} as CompanyProps);
+}: UpdateUnitModalProps) => {
+	const [unitInput, setUnitInput] = useState({} as CompanyProps);
 
 	const handleCloseModal = () => {
 		onClose();
-		setCompanyInput({
+		setUnitInput({
 			name: "",
 		});
 	};
 
-	const { mutateAsync: updateCompany, isLoading } = useUpdateCompany({
-		companyData,
+	const { mutateAsync: createUser, isLoading } = useUpdateUnit({
+		unitData,
 	});
 
 	const handleUpdateCompany = () => {
-		updateCompany({
-			...companyData,
-			name: companyInput.name,
+		createUser({
+			...unitData,
+			name: unitInput.name,
 		});
 
 		handleCloseModal();
@@ -52,15 +53,15 @@ export const UpdateCompanyModal = ({
 			<ModalOverlay bg="modalOverlay" />
 			<ModalContent w="90%" bg="white">
 				<ModalHeader fontSize={{ base: "16", "4xl": "22" }}>
-					Editar Usuário
+					Editar Unidade
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
 					<Stack spacing="6" as="form" pb="2rem">
 						<Input
-							defaultValue={companyData.name}
+							defaultValue={unitData.name}
 							onChange={(e) =>
-								setCompanyInput({
+								setUnitInput({
 									name: e.target.value,
 								})
 							}
