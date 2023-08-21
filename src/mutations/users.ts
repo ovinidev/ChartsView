@@ -5,14 +5,14 @@ import { useUsers } from "@queries/users";
 import { queryClient } from "@services/queryClient";
 import { useMutation } from "@tanstack/react-query";
 
-export interface CreateUserProps {
+export interface UserProps {
 	name: string;
 	email: string;
 }
 
 export const useCreateUser = () => {
 	return useMutation(
-		async (data: CreateUserProps) => {
+		async (data: UserProps) => {
 			return {
 				id: Math.random(),
 				companyId: 1,

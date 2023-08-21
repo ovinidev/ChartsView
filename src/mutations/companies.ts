@@ -5,15 +5,15 @@ import { useCompanies } from "@queries/companies";
 import { queryClient } from "@services/queryClient";
 import { useMutation } from "@tanstack/react-query";
 
-export interface CreateCompanyProps {
+export interface CompanyProps {
 	name: string;
 }
 
 export const useCreateCompany = () => {
 	return useMutation(
-		async (data: CreateCompanyProps) => {
+		async (data: CompanyProps) => {
 			return {
-				id: Math.random(),
+				id: Math.random().toFixed(3),
 				name: data.name,
 			};
 		},

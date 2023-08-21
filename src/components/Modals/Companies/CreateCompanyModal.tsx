@@ -10,30 +10,33 @@ import {
 import { Input } from "@components/Form/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createUserSchema } from "@validations/createUserSchema";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
-import { UserProps, useCreateUser } from "@mutations/users";
+import { CompanyProps, useCreateCompany } from "@mutations/companies";
+import { createCompanySchema } from "@validations/createCompanySchema";
 
-interface CreateUserModalProps {
+interface CreateCompanyModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 }
 
-export const CreateUserModal = ({ isOpen, onClose }: CreateUserModalProps) => {
+export const CreateCompanyModal = ({
+	isOpen,
+	onClose,
+}: CreateCompanyModalProps) => {
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<UserProps>({
-		resolver: zodResolver(createUserSchema),
+	} = useForm<CompanyProps>({
+		resolver: zodResolver(createCompanySchema),
 	});
 
-	const { mutateAsync: createUser, isLoading } = useCreateUser();
+	const { mutateAsync: createCompany, isLoading } = useCreateCompany();
 
-	const onSubmit: SubmitHandler<UserProps> = async (data) => {
-		await createUser(data);
+	const onSubmit: SubmitHandler<CompanyProps> = async (data) => {
+		await createCompany(data);
 
 		handleCloseModal();
 	};
@@ -48,7 +51,7 @@ export const CreateUserModal = ({ isOpen, onClose }: CreateUserModalProps) => {
 			<ModalOverlay bg="modalOverlay" />
 			<ModalContent w="90%" bg="white">
 				<ModalHeader fontSize={{ base: "16", "4xl": "22" }}>
-					Novo Usuário
+					Nova empresa
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
@@ -62,12 +65,6 @@ export const CreateUserModal = ({ isOpen, onClose }: CreateUserModalProps) => {
 							{...register("name")}
 							error={errors.name}
 							label="Nome"
-							w="100%"
-						/>
-						<Input
-							{...register("email")}
-							error={errors.email}
-							label="Email"
 							w="100%"
 						/>
 

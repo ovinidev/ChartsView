@@ -46,6 +46,7 @@ export default function Units() {
 					<TableContainer>
 						<Flex gap="4">
 							<InputSearch handleChange={handleChangeDebounce} />
+
 							<Button
 								onClick={() => dispatch({ type: ModalAction.ADD })}
 								text="Novo"

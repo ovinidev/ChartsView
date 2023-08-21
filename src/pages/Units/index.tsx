@@ -11,8 +11,10 @@ import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { Pagination } from "@components/Pagination";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
+import { useModal } from "@hooks/useModal";
 
 export default function Units() {
+	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
 	const { data: units, isLoading } = useUnits({ name: inputSearch });
 
@@ -38,7 +40,14 @@ export default function Units() {
 							</Thead>
 							<Tbody>
 								{units?.map((unit) => {
-									return <UnitItem key={unit.id} data={unit} />;
+									return (
+										<UnitItem
+											key={unit.id}
+											data={unit}
+											dispatch={dispatch}
+											onSetUnitInfo={() => console.log("")}
+										/>
+									);
 								})}
 							</Tbody>
 						</Table>

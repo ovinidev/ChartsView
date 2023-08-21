@@ -10,40 +10,38 @@ import {
 import { Input } from "@components/Form/Input";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
-import { User } from "@interfaces/users";
-import { UserProps, useUpdateUser } from "@mutations/users";
 import { useState } from "react";
+import { CompanyProps, useUpdateCompany } from "@mutations/companies";
+import { Company } from "@interfaces/companies";
 
-interface UpdateUserModalProps {
-	userData: User;
+interface UpdateCompanyModalProps {
+	companyData: Company;
 	isOpen: boolean;
 	onClose: () => void;
 }
 
-export const UpdateUserModal = ({
-	userData,
+export const UpdateCompanyModal = ({
+	companyData,
 	isOpen,
 	onClose,
-}: UpdateUserModalProps) => {
-	const [userInput, setUserInput] = useState({} as UserProps);
+}: UpdateCompanyModalProps) => {
+	const [companyInput, setCompanyInput] = useState({} as CompanyProps);
 
 	const handleCloseModal = () => {
 		onClose();
-		setUserInput({
-			email: "",
+		setCompanyInput({
 			name: "",
 		});
 	};
 
-	const { mutateAsync: createUser, isLoading } = useUpdateUser({
-		userData,
+	const { mutateAsync: createUser, isLoading } = useUpdateCompany({
+		companyData,
 	});
 
-	const handleUpdateUser = () => {
+	const handleUpdateCompany = () => {
 		createUser({
-			...userData,
-			name: userInput.name,
-			email: userInput.email,
+			...companyData,
+			name: companyInput.name,
 		});
 
 		handleCloseModal();
@@ -60,26 +58,14 @@ export const UpdateUserModal = ({
 				<ModalBody>
 					<Stack spacing="6" as="form" pb="2rem">
 						<Input
+							defaultValue={companyData.name}
+							onChange={(e) =>
+								setCompanyInput({
+									name: e.target.value,
+								})
+							}
 							label="Nome"
 							w="100%"
-							defaultValue={userData.name}
-							onChange={(e) =>
-								setUserInput({
-									name: e.target.value,
-									email: userInput.email,
-								})
-							}
-						/>
-						<Input
-							label="Email"
-							w="100%"
-							defaultValue={userData.email}
-							onChange={(e) =>
-								setUserInput({
-									name: userInput.name,
-									email: e.target.value,
-								})
-							}
 						/>
 
 						<ButtonContainer mt="2rem" alignSelf="center">
@@ -90,8 +76,8 @@ export const UpdateUserModal = ({
 								color="#FFF"
 								isLoading={isLoading}
 								type="button"
+								onClick={handleUpdateCompany}
 								text="Editar"
-								onClick={handleUpdateUser}
 							/>
 						</ButtonContainer>
 					</Stack>

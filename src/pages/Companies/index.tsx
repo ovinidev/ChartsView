@@ -11,10 +11,27 @@ import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { Pagination } from "@components/Pagination";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
+import { CreateCompanyModal } from "@components/Modals/Companies/CreateCompanyModal";
+import { ModalAction, useModal } from "@hooks/useModal";
+import { Button } from "@components/Buttons/Button";
+import { useState } from "react";
+import { Company } from "@interfaces/companies";
+import { UpdateCompanyModal } from "@components/Modals/Companies/UpdateUserModal";
+import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
+import { useDeleteCompany } from "@mutations/companies";
 
 export default function Companies() {
+	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
+
+	const [company, setCompany] = useState({} as Company);
 	const { data: companies, isLoading } = useCompanies({ name: inputSearch });
+
+	const { mutateAsync: deleteCompany } = useDeleteCompany();
+
+	const handleDeleteCompany = async () => {
+		await deleteCompany(company);
+	};
 
 	return (
 		<Flex direction="column">
@@ -27,7 +44,16 @@ export default function Companies() {
 					<ListSkeleton isLoading={isLoading} />
 				) : (
 					<TableContainer>
-						<InputSearch handleChange={handleChangeDebounce} />
+						<Flex gap="4">
+							<InputSearch handleChange={handleChangeDebounce} />
+
+							<Button
+								onClick={() => dispatch({ type: ModalAction.ADD })}
+								text="Novo"
+								bg="primary"
+								color="#FFF"
+							/>
+						</Flex>
 
 						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 							<Thead>
@@ -38,7 +64,14 @@ export default function Companies() {
 							</Thead>
 							<Tbody>
 								{companies?.map((company) => {
-									return <CompanyItem key={company.id} data={company} />;
+									return (
+										<CompanyItem
+											key={company.id}
+											data={company}
+											dispatch={dispatch}
+											onSetCompanyInfo={() => setCompany(company)}
+										/>
+									);
 								})}
 							</Tbody>
 						</Table>
@@ -56,6 +89,25 @@ export default function Companies() {
 			/>
 
 			<NavigationDrawer />
+
+			<CreateCompanyModal
+				isOpen={state.modalAdd}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<UpdateCompanyModal
+				companyData={company}
+				isOpen={state.modalEdit}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<DeleteConfirmationModal
+				onDeleteRequest={handleDeleteCompany}
+				title="Deletar empresa"
+				description="Tem certeza que deseja deletar a empresa?"
+				isOpen={state.modalDelete}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
 		</Flex>
 	);
 }

@@ -7,6 +7,7 @@ import { RiPencilFill } from "react-icons/ri";
 import { TbTrash } from "react-icons/tb";
 import { Action, ModalAction } from "@hooks/useModal";
 import { Dispatch } from "react";
+
 interface UserItemProps {
 	data: User;
 	dispatch: Dispatch<Action>;
@@ -36,7 +37,7 @@ export const UserItem = ({ data, dispatch, onSetUserInfo }: UserItemProps) => {
 				<HStack spacing="4">
 					<Icon
 						fontSize="26"
-						color="dark.10"
+						color="gray.700"
 						as={RiPencilFill}
 						onClick={handleOpenEdit}
 						cursor="pointer"
@@ -44,7 +45,7 @@ export const UserItem = ({ data, dispatch, onSetUserInfo }: UserItemProps) => {
 
 					<Icon
 						fontSize="26"
-						color="dark.10"
+						color="gray.700"
 						as={TbTrash}
 						onClick={handleOpenDelete}
 						cursor="pointer"
