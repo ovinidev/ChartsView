@@ -14,7 +14,10 @@ interface InputSearchProps extends InputProps {
 
 export const InputSearch = ({ handleChange, ...rest }: InputSearchProps) => {
 	return (
-		<InputGroup w="15rem" m={{ base: "0 1rem 0.5rem", "4xl": "0 2rem 0.5rem" }}>
+		<InputGroup
+			w="15rem"
+			m={{ base: "0 0 0.5rem 1rem", "4xl": "0 0 0.5rem 2rem" }}
+		>
 			<InputLeftElement
 				pointerEvents="none"
 				children={<Icon fontSize="1.5rem" color="#B5B5B6" as={MdSearch} />}
@@ -28,7 +31,6 @@ export const InputSearch = ({ handleChange, ...rest }: InputSearchProps) => {
 					color: "#B5B5B6",
 				}}
 				borderRadius="8px"
-				bg="white.100"
 				{...rest}
 			/>
 		</InputGroup>

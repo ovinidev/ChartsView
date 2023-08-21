@@ -12,13 +12,17 @@ export const AssetStatusCountItem = ({
 	return (
 		<Center
 			as="section"
-			h={{ base: "18rem", "7xl": "20rem" }}
-			w={{ base: "18rem", "7xl": "20rem" }}
+			h={{ base: "16rem", "7xl": "17rem" }}
+			w={{ base: "16rem", "7xl": "17rem" }}
 			borderRadius="10px"
 			bg="primary"
 		>
 			<Stack transition="all 0.5s ease" align="center">
-				<Text color="gray.100" fontWeight={700} fontSize="32">
+				<Text
+					color="gray.100"
+					fontWeight={700}
+					fontSize={{ base: "26", "4xl": "30" }}
+				>
 					{title}: {statusCount}
 				</Text>
 			</Stack>

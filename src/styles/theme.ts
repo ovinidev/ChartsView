@@ -3,6 +3,21 @@ import { extendTheme, theme as chakraTheme } from "@chakra-ui/react";
 export const theme = extendTheme({
 	colors: {
 		primary: "#1E3A8A",
+		modalOverlay: "rgba(0, 0, 0, 0.3)",
+		success: {
+			10: "#75B798",
+			30: "#479F76",
+			50: "#198754",
+			70: "#146C43",
+			90: "#0F5132",
+		},
+		error: {
+			10: "#EA868F",
+			30: "#E35D6A",
+			50: "#DC3545",
+			70: "#B02A37",
+			90: "#842029",
+		},
 	},
 
 	breakpoints: {

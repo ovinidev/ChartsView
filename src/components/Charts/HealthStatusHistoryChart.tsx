@@ -33,13 +33,14 @@ export const HealthStatusHistoryChart = ({
 
 	const options = {
 		chart: {
-			zoomType: "xy",
+			type: "line",
+			zoomType: "x",
 		},
 		title: {
 			text: "Status da máquina ao longo do tempo",
 		},
 		xAxis: {
-			categories: healthHistoryTime,
+			categories: healthHistoryTime.concat(healthHistoryTime),
 		},
 		yAxis: {
 			title: {
@@ -50,7 +51,7 @@ export const HealthStatusHistoryChart = ({
 		series: [
 			{
 				name: data?.name,
-				data: healthHistoryStatus,
+				data: healthHistoryStatus.concat(healthHistoryStatus),
 				color: "#1E3A8A",
 			},
 		],

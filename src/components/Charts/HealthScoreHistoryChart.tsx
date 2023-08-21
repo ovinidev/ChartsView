@@ -44,7 +44,7 @@ export const HealthScoreHistoryChart = ({
 			text: "Saúde da máquina ao longo do tempo",
 		},
 		xAxis: {
-			categories: healthScoreDateHistory,
+			categories: healthScoreDateHistory.concat(healthScoreDateHistory),
 		},
 		yAxis: {
 			title: {
@@ -54,7 +54,7 @@ export const HealthScoreHistoryChart = ({
 		series: [
 			{
 				name: data?.name,
-				data: healthScoreHistory,
+				data: healthScoreHistory.concat(healthScoreHistory),
 				color: "#1E3A8A",
 			},
 		],

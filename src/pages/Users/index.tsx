@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex, Td } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { TableContainer } from "@components/Table/TableContainer";
 import { useUsers } from "@queries/users";
@@ -11,10 +12,34 @@ import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { Pagination } from "@components/Pagination";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
+import { ModalAction, useModal } from "@hooks/useModal";
+import { useState } from "react";
+import { User } from "@interfaces/users";
+import { CreateUserModal } from "@components/Modals/CreateUserModal";
+import { Button } from "@components/Buttons/Button";
+import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
+import { useMutation } from "@tanstack/react-query";
+import { USERS } from "@constants/entities";
+import { queryClient } from "@services/queryClient";
+import { UpdateUserModal } from "@components/Modals/UpdateUserModal";
 
 export default function Units() {
+	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
+	const [user, setUser] = useState({} as User);
 	const { data: users, isLoading } = useUsers({ name: inputSearch });
+
+	const { mutateAsync: deleteUser } = useMutation(async (data: User) => data, {
+		onSuccess: (data) => {
+			const usersNotBeDelete = users?.filter((user) => user.id !== data.id);
+
+			queryClient.setQueryData([USERS], () => usersNotBeDelete);
+		},
+	});
+
+	const handleDeleteUser = async () => {
+		await deleteUser(user);
+	};
 
 	return (
 		<Flex direction="column">
@@ -27,18 +52,34 @@ export default function Units() {
 					<ListSkeleton isLoading={isLoading} />
 				) : (
 					<TableContainer>
-						<InputSearch handleChange={handleChangeDebounce} />
+						<Flex gap="4">
+							<InputSearch handleChange={handleChangeDebounce} />
+							<Button
+								onClick={() => dispatch({ type: ModalAction.ADD })}
+								text="Novo"
+								bg="primary"
+								color="#FFF"
+							/>
+						</Flex>
 
 						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 							<Thead>
 								<Tr>
 									<THead>Nome</THead>
 									<THead>Email</THead>
+									<Td></Td>
 								</Tr>
 							</Thead>
 							<Tbody>
 								{users?.map((user) => {
-									return <UserItem key={user.id} data={user} />;
+									return (
+										<UserItem
+											key={user.id}
+											data={user}
+											dispatch={dispatch}
+											onSetUserInfo={() => setUser(user)}
+										/>
+									);
 								})}
 							</Tbody>
 						</Table>
@@ -56,6 +97,25 @@ export default function Units() {
 			/>
 
 			<NavigationDrawer />
+
+			<CreateUserModal
+				isOpen={state.modalAdd}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<UpdateUserModal
+				userData={user}
+				isOpen={state.modalEdit}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<DeleteConfirmationModal
+				title="Deletar usuário"
+				description="Tem Certeza que deseja deletar o usuário?"
+				onDeleteRequest={handleDeleteUser}
+				isOpen={state.modalDelete}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
 		</Flex>
 	);
 }
