@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import loadable from "@loadable/component";
-import Assets from "@pages/Assets";
+// import Assets from "@pages/Assets";
 // import Users from "@pages/Users";
 // import Companies from "@pages/Companies";
 // import Units from "@pages/Units";
@@ -11,6 +11,7 @@ import UnitDetails from "@pages/UnitDetails";
 import AssetDetails from "@pages/AssetDetails";
 import WorkOrderDetails from "@pages/WorkOrderDetails";
 const NotFound = loadable(() => import("@pages/NotFound"));
+const Assets = loadable(() => import("@pages/Assets"));
 const Users = loadable(() => import("@pages/Users"));
 const Companies = loadable(() => import("@pages/Companies"));
 const Units = loadable(() => import("@pages/Units"));
