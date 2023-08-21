@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Td } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Td, Th } from "@chakra-ui/react";
 import { TableContainer } from "@components/Table/TableContainer";
 import { THead } from "@components/Table/THead";
 import { TData } from "@components/Table/TData";
@@ -19,7 +19,7 @@ export const AssetsHealthTable = () => {
 					<Tr>
 						<THead>Nome</THead>
 						<THead>Saúde</THead>
-						<Td></Td>
+						<Th></Th>
 					</Tr>
 				</Thead>
 				<Tbody>

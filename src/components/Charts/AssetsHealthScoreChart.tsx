@@ -13,7 +13,7 @@ export const AssetsHealthScoreChart = ({
 		chart: {
 			type: "column",
 			zoomType: "x",
-			backgroundColor: "#EDF2F7",
+			backgroundColor: "#F7FAFC",
 		},
 		title: {
 			text: "Saúde das máquinas",
