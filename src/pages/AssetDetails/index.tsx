@@ -1,10 +1,11 @@
-import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { Flex, Image, Stack, Text } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useParams } from "react-router-dom";
 import { useAssetById } from "@queries/assets";
 import { HealthScoreHistoryChart } from "@components/Charts/HealthScoreHistoryChart";
 import { HealthStatusHistoryChart } from "@components/Charts/HealthStatusHistoryChart";
+import { AssetDetailsSkeleton } from "./AssetDetailsSkeleton";
 
 export default function AssetDetails() {
 	const { assetId } = useParams();
@@ -22,7 +23,7 @@ export default function AssetDetails() {
 
 			<Flex direction="column">
 				{isLoading ? (
-					<Heading>Carregando</Heading>
+					<AssetDetailsSkeleton isLoading={isLoading} />
 				) : (
 					<Stack spacing="8" p={{ base: "1.5rem", "2xl": "2rem" }}>
 						<Flex

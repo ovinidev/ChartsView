@@ -14,12 +14,13 @@ import { useUserById } from "@queries/users";
 import { useParams } from "react-router-dom";
 import { useWorkOrders } from "@queries/workorders";
 import { BsCheckSquareFill } from "react-icons/bs";
+import { UserDetailsSkeleton } from "./UserDetailsSkeleton";
 
 export default function UserDetails() {
 	const { userId } = useParams();
 	const { data: user, isLoading } = useUserById(String(userId));
 
-	const { data: workOrders } = useWorkOrders();
+	const { data: workOrders } = useWorkOrders({ title: "" });
 
 	const userWorkOrders = workOrders?.filter((workOrder) => {
 		return workOrder.assignedUserIds.includes(Number(user?.id));
@@ -31,7 +32,7 @@ export default function UserDetails() {
 
 			<Flex direction="column">
 				{isLoading ? (
-					<Heading>Carregando</Heading>
+					<UserDetailsSkeleton isLoading={isLoading} />
 				) : (
 					<Stack spacing="8" p={{ base: "1.5rem", "2xl": "2rem" }}>
 						<Flex direction={{ base: "column", "2xl": "row" }}>

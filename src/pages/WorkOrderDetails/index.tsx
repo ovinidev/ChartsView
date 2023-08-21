@@ -1,8 +1,9 @@
-import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Flex, Stack, Text } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useParams } from "react-router-dom";
 import { useWorkOrderById } from "@queries/workorders";
+import { WorkOrderDetailsSkeleton } from "./WorkOrderDetailsSkeleton";
 
 export default function WorkOrderDetails() {
 	const { workOrderId } = useParams();
@@ -14,7 +15,7 @@ export default function WorkOrderDetails() {
 
 			<Flex direction="column">
 				{isLoading ? (
-					<Heading>Carregando</Heading>
+					<WorkOrderDetailsSkeleton isLoading={isLoading} />
 				) : (
 					<Stack
 						fontSize="24"

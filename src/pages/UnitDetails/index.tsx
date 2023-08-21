@@ -1,16 +1,17 @@
-import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Flex, Stack, Text } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useUsers } from "@queries/users";
 import { useParams } from "react-router-dom";
 import { useUnitById } from "@queries/units";
 import { useAssets } from "@queries/assets";
+import { UnitDetailsSkeleton } from "./UnitDetailsSkeleton";
 
 export default function UnitDetails() {
 	const { unityId } = useParams();
 	const { data: unit, isLoading } = useUnitById(String(unityId));
-	const { data: users } = useUsers();
-	const { data: assets } = useAssets();
+	const { data: users } = useUsers({ name: "" });
+	const { data: assets } = useAssets({ name: "" });
 
 	const usersInUnit = users?.filter((user) => {
 		return user.unitId === unit?.id;
@@ -26,7 +27,7 @@ export default function UnitDetails() {
 
 			<Flex direction="column">
 				{isLoading ? (
-					<Heading>Carregando</Heading>
+					<UnitDetailsSkeleton isLoading={isLoading} />
 				) : (
 					<Stack spacing="3" p={{ base: "1.5rem", "2xl": "2rem" }}>
 						<Text fontSize="32" fontWeight={500}>

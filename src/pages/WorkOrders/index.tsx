@@ -9,10 +9,12 @@ import { WorkOrderItem } from "./WorkOrderItem";
 import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
 import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
+import { useSidebar } from "@contexts/useSidebar";
 
 export default function WorkOrders() {
 	const { inputSearch, handleChangeDebounce } = useSearch();
 	const { data: workOrders, isLoading } = useWorkOrders({ title: inputSearch });
+	const { isDesktop } = useSidebar();
 
 	return (
 		<Flex direction="column">
@@ -30,7 +32,7 @@ export default function WorkOrders() {
 						<Thead>
 							<Tr>
 								<THead>Título</THead>
-								<THead>Descrição</THead>
+								{isDesktop && <THead>Descrição</THead>}
 								<THead>Status</THead>
 							</Tr>
 						</Thead>
