@@ -15,6 +15,8 @@ import { ModalAction, useModal } from "@hooks/useModal";
 import { useState } from "react";
 import { Asset } from "@interfaces/assets";
 import { Button } from "@components/Buttons/Button";
+import { CreateAssetModal } from "@components/Modals/Assets/CreateAssetModal";
+import { UpdateAssetModal } from "@components/Modals/Assets/UpdateAssetModal";
 
 export default function Units() {
 	const { dispatch, state } = useModal();
@@ -81,6 +83,17 @@ export default function Units() {
 			/>
 
 			<NavigationDrawer />
+
+			<CreateAssetModal
+				isOpen={state.modalAdd}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
+
+			<UpdateAssetModal
+				assetData={asset}
+				isOpen={state.modalEdit}
+				onClose={() => dispatch({ type: ModalAction.CLOSE })}
+			/>
 		</Flex>
 	);
 }

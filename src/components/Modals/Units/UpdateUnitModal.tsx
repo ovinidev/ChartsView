@@ -11,7 +11,6 @@ import { Input } from "@components/Form/Input";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
 import { useState } from "react";
-import { CompanyProps } from "@mutations/companies";
 import { useUpdateUnit } from "@mutations/units";
 import { Unit } from "@interfaces/units";
 
@@ -26,7 +25,9 @@ export const UpdateUnitModal = ({
 	isOpen,
 	onClose,
 }: UpdateUnitModalProps) => {
-	const [unitInput, setUnitInput] = useState({} as CompanyProps);
+	const [unitInput, setUnitInput] = useState({
+		name: unitData.name,
+	});
 
 	const handleCloseModal = () => {
 		onClose();
@@ -35,12 +36,12 @@ export const UpdateUnitModal = ({
 		});
 	};
 
-	const { mutateAsync: createUser, isLoading } = useUpdateUnit({
+	const { mutateAsync: updateUnit, isLoading } = useUpdateUnit({
 		unitData,
 	});
 
-	const handleUpdateCompany = () => {
-		createUser({
+	const handleUpdateUnit = () => {
+		updateUnit({
 			...unitData,
 			name: unitInput.name,
 		});
@@ -77,7 +78,7 @@ export const UpdateUnitModal = ({
 								color="#FFF"
 								isLoading={isLoading}
 								type="button"
-								onClick={handleUpdateCompany}
+								onClick={handleUpdateUnit}
 								text="Editar"
 							/>
 						</ButtonContainer>

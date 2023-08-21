@@ -16,7 +16,7 @@ import { ModalAction, useModal } from "@hooks/useModal";
 import { Button } from "@components/Buttons/Button";
 import { useState } from "react";
 import { Company } from "@interfaces/companies";
-import { UpdateCompanyModal } from "@components/Modals/Companies/UpdateUserModal";
+import { UpdateCompanyModal } from "@components/Modals/Companies/UpdateCompanyModal";
 import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
 import { useDeleteCompany } from "@mutations/companies";
 

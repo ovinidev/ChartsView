@@ -11,7 +11,7 @@ import { Input } from "@components/Form/Input";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
 import { User } from "@interfaces/users";
-import { UserProps, useUpdateUser } from "@mutations/users";
+import { useUpdateUser } from "@mutations/users";
 import { useState } from "react";
 
 interface UpdateUserModalProps {
@@ -25,7 +25,10 @@ export const UpdateUserModal = ({
 	isOpen,
 	onClose,
 }: UpdateUserModalProps) => {
-	const [userInput, setUserInput] = useState({} as UserProps);
+	const [userInput, setUserInput] = useState({
+		email: userData.email,
+		name: userData.name,
+	});
 
 	const handleCloseModal = () => {
 		onClose();
@@ -35,12 +38,12 @@ export const UpdateUserModal = ({
 		});
 	};
 
-	const { mutateAsync: createUser, isLoading } = useUpdateUser({
+	const { mutateAsync: updateUser, isLoading } = useUpdateUser({
 		userData,
 	});
 
 	const handleUpdateUser = () => {
-		createUser({
+		updateUser({
 			...userData,
 			name: userInput.name,
 			email: userInput.email,

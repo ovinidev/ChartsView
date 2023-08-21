@@ -11,7 +11,7 @@ import { Input } from "@components/Form/Input";
 import { ButtonContainer } from "@components/Buttons/ButtonContainer";
 import { Button } from "@components/Buttons/Button";
 import { useState } from "react";
-import { CompanyProps, useUpdateCompany } from "@mutations/companies";
+import { useUpdateCompany } from "@mutations/companies";
 import { Company } from "@interfaces/companies";
 
 interface UpdateCompanyModalProps {
@@ -25,7 +25,9 @@ export const UpdateCompanyModal = ({
 	isOpen,
 	onClose,
 }: UpdateCompanyModalProps) => {
-	const [companyInput, setCompanyInput] = useState({} as CompanyProps);
+	const [companyInput, setCompanyInput] = useState({
+		name: companyData.name,
+	});
 
 	const handleCloseModal = () => {
 		onClose();
