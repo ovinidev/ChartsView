@@ -1,6 +1,6 @@
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex, Td } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { useUnits } from "@queries/units";
 import { UnitItem } from "./UnitItem";
@@ -11,11 +11,16 @@ import { InputSearch } from "@components/Form/InputSearch";
 import { useSearch } from "@hooks/useSearch";
 import { Pagination } from "@components/Pagination";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
-import { useModal } from "@hooks/useModal";
+import { ModalAction, useModal } from "@hooks/useModal";
+import { useState } from "react";
+import { Unit } from "@interfaces/units";
+import { Button } from "@components/Buttons/Button";
 
 export default function Units() {
 	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
+
+	const [unit, setUnit] = useState({} as Unit);
 	const { data: units, isLoading } = useUnits({ name: inputSearch });
 
 	return (
@@ -29,13 +34,23 @@ export default function Units() {
 					<ListSkeleton isLoading={isLoading} />
 				) : (
 					<TableContainer>
-						<InputSearch handleChange={handleChangeDebounce} />
+						<Flex gap="4">
+							<InputSearch handleChange={handleChangeDebounce} />
+
+							<Button
+								onClick={() => dispatch({ type: ModalAction.ADD })}
+								text="Novo"
+								bg="primary"
+								color="#FFF"
+							/>
+						</Flex>
 
 						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 							<Thead>
 								<Tr>
 									<THead>Id</THead>
 									<THead>Nome</THead>
+									<Td></Td>
 								</Tr>
 							</Thead>
 							<Tbody>
@@ -45,7 +60,7 @@ export default function Units() {
 											key={unit.id}
 											data={unit}
 											dispatch={dispatch}
-											onSetUnitInfo={() => console.log("")}
+											onSetUnitInfo={() => setUnit(unit)}
 										/>
 									);
 								})}
