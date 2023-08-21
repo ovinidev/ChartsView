@@ -44,7 +44,7 @@ export const useUpdateUser = ({ userData }: UseUpdateUserProps) => {
 			return {
 				...userData,
 				name: data.name ? data.name : userData.name,
-				email: data.email ? data.email : userData.name,
+				email: data.email ? data.email : userData.email,
 			};
 		},
 		{

@@ -44,12 +44,12 @@ export const useUpdateCompany = ({ companyData }: UseUpdateCompanyProps) => {
 		},
 		{
 			onSuccess: (data) => {
-				const userToEditIndex = companies?.findIndex(
+				const assetToEditIndex = companies?.findIndex(
 					(company) => company.id === companyData.id,
 				);
 
-				if (companies && userToEditIndex !== undefined) {
-					companies[userToEditIndex] = data;
+				if (companies && assetToEditIndex !== undefined) {
+					companies[assetToEditIndex] = data;
 
 					queryClient.setQueryData([COMPANIES], () => companies);
 				}
