@@ -10,8 +10,10 @@ import { AssetStatusCountSkeleton } from "./AssetStatusCountItem/AssetStatusCoun
 import { AssetsHealthTable } from "./AssetsHealthTable";
 
 export default function Home() {
-	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders();
-	const { data: assets } = useAssets();
+	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders({
+		title: "",
+	});
+	const { data: assets } = useAssets({ name: "" });
 
 	const completedCount = workOrders?.filter(
 		(workOrder) => workOrder.status === "completed",

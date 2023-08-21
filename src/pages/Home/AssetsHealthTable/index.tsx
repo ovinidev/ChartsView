@@ -5,7 +5,7 @@ import { TData } from "@components/Table/TData";
 import { useAssets } from "@queries/assets";
 
 export const AssetsHealthTable = () => {
-	const { data: assets } = useAssets();
+	const { data: assets } = useAssets({ name: "" });
 
 	return (
 		<TableContainer align="center">
