@@ -3,7 +3,11 @@ import { ASSETS } from "@constants/entities";
 import { STALE_TIME } from "@constants/staleTime";
 import { useQuery } from "@tanstack/react-query";
 
-export const useAssets = () => {
+interface UseAssetsProps {
+	name: string;
+}
+
+export const useAssets = ({ name }: UseAssetsProps) => {
 	return useQuery(
 		[ASSETS],
 		async () => {
@@ -13,6 +17,13 @@ export const useAssets = () => {
 		},
 		{
 			staleTime: STALE_TIME,
+			select: (item) =>
+				item.filter((asset) => {
+					if (name.length === 0) return asset;
+					return asset.name
+						.toLocaleLowerCase()
+						.startsWith(name.toLocaleLowerCase());
+				}),
 		},
 	);
 };

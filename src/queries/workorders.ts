@@ -3,7 +3,11 @@ import { WORKORDERS } from "@constants/entities";
 import { STALE_TIME } from "@constants/staleTime";
 import { useQuery } from "@tanstack/react-query";
 
-export const useWorkOrders = () => {
+interface UseWorkOrdersProps {
+	title: string;
+}
+
+export const useWorkOrders = ({ title }: UseWorkOrdersProps) => {
 	return useQuery(
 		[WORKORDERS],
 		async () => {
@@ -13,6 +17,13 @@ export const useWorkOrders = () => {
 		},
 		{
 			staleTime: STALE_TIME,
+			select: (item) =>
+				item.filter((workOrder) => {
+					if (title.length === 0) return workOrder;
+					return workOrder.title
+						.toLocaleLowerCase()
+						.startsWith(title.toLocaleLowerCase());
+				}),
 		},
 	);
 };

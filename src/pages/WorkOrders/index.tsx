@@ -7,9 +7,12 @@ import { Title } from "@components/Title";
 import { useWorkOrders } from "@queries/workorders";
 import { WorkOrderItem } from "./WorkOrderItem";
 import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
+import { InputSearch } from "@components/Form/InputSearch";
+import { useSearch } from "@hooks/useSearch";
 
 export default function WorkOrders() {
-	const { data: workOrders, isLoading } = useWorkOrders();
+	const { inputSearch, handleChangeDebounce } = useSearch();
+	const { data: workOrders, isLoading } = useWorkOrders({ title: inputSearch });
 
 	return (
 		<Flex direction="column">
@@ -21,6 +24,8 @@ export default function WorkOrders() {
 				<ListSkeleton isLoading={isLoading} />
 			) : (
 				<TableContainer>
+					<InputSearch handleChange={handleChangeDebounce} />
+
 					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 						<Thead>
 							<Tr>

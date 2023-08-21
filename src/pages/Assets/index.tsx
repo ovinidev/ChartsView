@@ -7,9 +7,12 @@ import { useAssets } from "@queries/assets";
 import { TableContainer } from "@components/Table/TableContainer";
 import { Title } from "@components/Title";
 import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
+import { InputSearch } from "@components/Form/InputSearch";
+import { useSearch } from "@hooks/useSearch";
 
 export default function Units() {
-	const { data: assets, isLoading } = useAssets();
+	const { inputSearch, handleChangeDebounce } = useSearch();
+	const { data: assets, isLoading } = useAssets({ name: inputSearch });
 
 	return (
 		<Flex direction="column">
@@ -21,6 +24,8 @@ export default function Units() {
 				<ListSkeleton isLoading={isLoading} />
 			) : (
 				<TableContainer>
+					<InputSearch handleChange={handleChangeDebounce} />
+
 					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 						<Thead>
 							<Tr>

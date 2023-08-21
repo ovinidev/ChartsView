@@ -3,7 +3,11 @@ import { UNITS } from "@constants/entities";
 import { STALE_TIME } from "@constants/staleTime";
 import { useQuery } from "@tanstack/react-query";
 
-export const useUnits = () => {
+interface UseUnitsProps {
+	name: string;
+}
+
+export const useUnits = ({ name }: UseUnitsProps) => {
 	return useQuery(
 		[UNITS],
 		async () => {
@@ -13,6 +17,13 @@ export const useUnits = () => {
 		},
 		{
 			staleTime: STALE_TIME,
+			select: (item) =>
+				item.filter((unit) => {
+					if (name.length === 0) return unit;
+					return unit.name
+						.toLocaleLowerCase()
+						.startsWith(name.toLocaleLowerCase());
+				}),
 		},
 	);
 };

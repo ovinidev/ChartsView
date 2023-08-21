@@ -7,9 +7,12 @@ import { UnitItem } from "./UnitItem";
 import { TableContainer } from "@components/Table/TableContainer";
 import { Title } from "@components/Title";
 import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
+import { InputSearch } from "@components/Form/InputSearch";
+import { useSearch } from "@hooks/useSearch";
 
 export default function Units() {
-	const { data: units, isLoading } = useUnits();
+	const { inputSearch, handleChangeDebounce } = useSearch();
+	const { data: units, isLoading } = useUnits({ name: inputSearch });
 
 	return (
 		<Flex direction="column">
@@ -21,6 +24,8 @@ export default function Units() {
 				<ListSkeleton isLoading={isLoading} />
 			) : (
 				<TableContainer>
+					<InputSearch handleChange={handleChangeDebounce} />
+
 					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 						<Thead>
 							<Tr>
