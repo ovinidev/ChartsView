@@ -1,27 +1,39 @@
-# React + TypeScript + Vite
+# Tractian Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  
+<h4>
+  Aplicação Frontend com React.js realizado durante o desafio da Tractian
+</h4>
 
-Currently, two official plugins are available:
+## 💡 Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tecnologias utilizada no projeto:
 
-## Expanding the ESLint configuration
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png" width="63">&nbsp;
+&nbsp;
+<img src="https://cdn.iconscout.com/icon/free/png-512/typescript-1174965.png" alt="imagem" width="60">&nbsp;
+&nbsp; 
+<img src="https://avatars.githubusercontent.com/u/54212428?s=280&v=4" alt="imagem" width="60">&nbsp;
+&nbsp;
+<img src="https://camo.githubusercontent.com/2cd3571ea5b29a8640a44095d09671d9d350746b8c35407781b2508533b6f2c4/68747470733a2f2f7365656b6c6f676f2e636f6d2f696d616765732f522f72656163742d71756572792d6c6f676f2d313334304541344345392d7365656b6c6f676f2e636f6d2e706e67" alt="imagem" width="63">&nbsp;
+&nbsp;
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<!-- ## 🔍 Layout
 
-- Configure the top-level `parserOptions` property like this:
+Você pode visualizar a funcionalidade do projeto através do
+[link](https://dt-money-ignite-vini.vercel.app/). -->
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## 🚀 Como executar
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Clone o repositório
+- Instale as dependências com `pnpm install`
+- Inicie o servidor com `pnpm dev`
+
+Agora você pode acessar [`localhost:5173`](http://localhost:5173) do seu
+navegador.
+
+<div>
+  <img align="left" src="https://avatars.githubusercontent.com/u/62653539?v=4" width=35 alt="Profile"/>
+  <sub>Made with 💜 by <a href="https://github.com/ovinidev">Vinícius Medeiros</a></sub>
+</div>
