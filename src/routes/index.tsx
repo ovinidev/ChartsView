@@ -9,6 +9,7 @@ import Home from "@pages/Home";
 import UserDetails from "@pages/UserDetails";
 import UnitDetails from "@pages/UnitDetails";
 import AssetDetails from "@pages/AssetDetails";
+import WorkOrderDetails from "@pages/WorkOrderDetails";
 const NotFound = loadable(() => import("@pages/NotFound"));
 
 export function MainRoutes() {
@@ -23,6 +24,7 @@ export function MainRoutes() {
 			<Route path="/usuarios" element={<Users />} />
 			<Route path="/usuarios/:userId" element={<UserDetails />} />
 			<Route path="/servicos" element={<WorkOrders />} />
+			<Route path="/servicos/:workOrderId" element={<WorkOrderDetails />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

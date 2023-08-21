@@ -1,10 +1,12 @@
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex, Heading } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { TableContainer } from "@components/Table/TableContainer";
 import { useUsers } from "@queries/users";
 import { UserItem } from "./UserItem";
+import { Title } from "@components/Title";
+import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
 
 export default function Units() {
 	const { data: users, isLoading } = useUsers();
@@ -12,15 +14,14 @@ export default function Units() {
 	return (
 		<Flex direction="column">
 			<Header />
-			<Heading fontWeight={500} m={{ base: "1rem", "4xl": "2rem" }}>
-				Usuários
-			</Heading>
+
+			<Title>Usuários</Title>
 
 			{isLoading ? (
-				<Heading>Carregando</Heading>
+				<ListSkeleton isLoading={isLoading} />
 			) : (
 				<TableContainer>
-					<Table variant="simple" size="lg">
+					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 						<Thead>
 							<Tr>
 								<THead>Nome</THead>

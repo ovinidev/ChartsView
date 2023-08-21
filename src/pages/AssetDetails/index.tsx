@@ -1,4 +1,4 @@
-import { Flex, HStack, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useParams } from "react-router-dom";
@@ -59,12 +59,14 @@ export default function AssetDetails() {
 								)}
 							</Stack>
 						</Flex>
-
-						{asset && <HealthStatusHistoryChart data={asset} />}
-						{asset && <HealthScoreHistoryChart data={asset} />}
 					</Stack>
 				)}
 			</Flex>
+
+			<Stack px={{ base: "0", "4xl": "5rem" }}>
+				{asset && <HealthStatusHistoryChart data={asset} />}
+				{asset && <HealthScoreHistoryChart data={asset} />}
+			</Stack>
 
 			<NavigationDrawer />
 		</Flex>

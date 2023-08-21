@@ -12,8 +12,8 @@ export const AssetStatusCountItem = ({
 	return (
 		<Center
 			as="section"
-			h={{ base: "18rem", "7xl": "20rem", "9xl": "23.125rem" }}
-			w={{ base: "18rem", "7xl": "20rem", "9xl": "23.125rem" }}
+			h={{ base: "18rem", "7xl": "20rem" }}
+			w={{ base: "18rem", "7xl": "20rem" }}
 			borderRadius="10px"
 			bg="primary"
 		>

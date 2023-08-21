@@ -1,10 +1,12 @@
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { Table, Thead, Tbody, Tr, Flex, Heading } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Flex } from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { useCompanies } from "@queries/companies";
 import { CompanyItem } from "./CompanyItem";
 import { TableContainer } from "@components/Table/TableContainer";
+import { Title } from "@components/Title";
+import { ListSkeleton } from "@components/Skeletons/ListSkeleton";
 
 export default function Companies() {
 	const { data: companies, isLoading } = useCompanies();
@@ -12,15 +14,14 @@ export default function Companies() {
 	return (
 		<Flex direction="column">
 			<Header />
-			<Heading fontWeight={500} m={{ base: "1rem", "4xl": "2rem" }}>
-				Unidades
-			</Heading>
+
+			<Title>Empresas</Title>
 
 			{isLoading ? (
-				<Heading>Carregando</Heading>
+				<ListSkeleton isLoading={isLoading} />
 			) : (
 				<TableContainer>
-					<Table variant="simple" size="lg">
+					<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
 						<Thead>
 							<Tr>
 								<THead>Id</THead>
