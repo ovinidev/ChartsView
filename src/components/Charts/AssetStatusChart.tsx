@@ -6,7 +6,7 @@ interface AssetStatusChartProps {
 	data: Asset[];
 }
 
-export const AssetStatusChart = ({ data }: AssetStatusChartProps) => {
+export default function AssetStatusChart({ data }: AssetStatusChartProps) {
 	const inOperationsCount = data.filter(
 		(asset) => asset.status === "inOperation",
 	).length;
@@ -63,4 +63,4 @@ export const AssetStatusChart = ({ data }: AssetStatusChartProps) => {
 	};
 
 	return <HighchartsReact highcharts={Highcharts} options={options} />;
-};
+}

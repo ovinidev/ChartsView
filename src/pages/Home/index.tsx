@@ -4,12 +4,17 @@ import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useWorkOrders } from "@queries/workorders";
 import { AssetStatusCountItem } from "./AssetStatusCountItem";
 import { useAssets } from "@queries/assets";
-import { AssetStatusChart } from "@components/Charts/AssetStatusChart";
 import { AssetsStatusContainer } from "./AssetsStatusContainer";
 import { AssetStatusCountSkeleton } from "./AssetStatusCountItem/AssetStatusCountSkeleton";
 import { AssetsHealthTable } from "./AssetsHealthTable";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
-import { AssetsHealthScoreChart } from "@components/Charts/AssetsHealthScoreChart";
+import loadable from "@loadable/component";
+const AssetStatusChart = loadable(
+	() => import("@components/Charts/AssetStatusChart"),
+);
+const AssetsHealthScoreChart = loadable(
+	() => import("@components/Charts/AssetsHealthScoreChart"),
+);
 
 export default function Home() {
 	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders({

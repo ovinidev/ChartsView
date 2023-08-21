@@ -3,13 +3,18 @@ import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useParams } from "react-router-dom";
 import { useAssetById } from "@queries/assets";
-import { AssetHealthScoreHistoryChart } from "@components/Charts/AssetHealthScoreHistoryChart";
-import { AssetMaxTempChart } from "@components/Charts/AssetMaxTempChart";
 import { AssetDetailsSkeleton } from "./AssetDetailsSkeleton";
 import { BackButton } from "@components/Buttons/BackButton";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import { TimelineDrawer } from "@components/Drawers/TimelineDrawer";
 import { Button } from "@components/Buttons/Button";
+import loadable from "@loadable/component";
+const AssetHealthScoreHistoryChart = loadable(
+	() => import("@components/Charts/AssetHealthScoreHistoryChart"),
+);
+const AssetMaxTempChart = loadable(
+	() => import("@components/Charts/AssetMaxTempChart"),
+);
 
 export default function AssetDetails() {
 	const { isOpen, onOpen, onClose } = useDisclosure();

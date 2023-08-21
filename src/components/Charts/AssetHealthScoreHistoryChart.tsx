@@ -7,9 +7,9 @@ interface AssetHealthScoreHistoryChartProps {
 	data: Asset;
 }
 
-export const AssetHealthScoreHistoryChart = ({
+export default function AssetHealthScoreHistoryChart({
 	data,
-}: AssetHealthScoreHistoryChartProps) => {
+}: AssetHealthScoreHistoryChartProps) {
 	const healthScoreDateHistory = [
 		"16/06/2023",
 		"09/07/2023",
@@ -61,4 +61,4 @@ export const AssetHealthScoreHistoryChart = ({
 	};
 
 	return <HighchartsReact highcharts={Highcharts} options={options} />;
-};
+}

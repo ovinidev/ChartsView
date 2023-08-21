@@ -6,9 +6,9 @@ interface AssetsHealthScoreChartProps {
 	data: Asset[];
 }
 
-export const AssetsHealthScoreChart = ({
+export default function AssetsHealthScoreChart({
 	data,
-}: AssetsHealthScoreChartProps) => {
+}: AssetsHealthScoreChartProps) {
 	const options = {
 		chart: {
 			type: "column",
@@ -36,4 +36,4 @@ export const AssetsHealthScoreChart = ({
 	};
 
 	return <HighchartsReact highcharts={Highcharts} options={options} />;
-};
+}

@@ -6,7 +6,7 @@ interface AssetMaxTempChartProps {
 	data: Asset;
 }
 
-export const AssetMaxTempChart = ({ data }: AssetMaxTempChartProps) => {
+export default function AssetMaxTempChart({ data }: AssetMaxTempChartProps) {
 	const maxTempDateHistory = [
 		"18/06/2023",
 		"15/07/2023",
@@ -58,4 +58,4 @@ export const AssetMaxTempChart = ({ data }: AssetMaxTempChartProps) => {
 	};
 
 	return <HighchartsReact highcharts={Highcharts} options={options} />;
-};
+}
