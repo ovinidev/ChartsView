@@ -5,6 +5,7 @@ import { useAssets } from "@queries/assets";
 import { AssetsHealthTable } from "./AssetsHealthTable";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import loadable from "@loadable/component";
+import { AssetsHealthTableSkeleton } from "./AssetsHealthTable/AssetsHealthTableSkeleton";
 const AssetStatusChart = loadable(
 	() => import("@components/Charts/AssetStatusChart"),
 );
@@ -16,7 +17,7 @@ const AssetTotalUpTimeChart = loadable(
 );
 
 export default function Home() {
-	const { data: assets } = useAssets({ name: "" });
+	const { data: assets, isLoading } = useAssets({ name: "" });
 
 	return (
 		<Flex direction="column" pb="2rem">
@@ -31,11 +32,23 @@ export default function Home() {
 					gap="12"
 					my="2rem"
 				>
-					<AssetsHealthTable />
+					{isLoading ? (
+						<AssetsHealthTableSkeleton isLoading={isLoading} />
+					) : (
+						<AssetsHealthTable />
+					)}
 
-					{assets && <AssetTotalUpTimeChart data={assets} />}
+					{isLoading ? (
+						<AssetsHealthTableSkeleton isLoading={isLoading} />
+					) : (
+						assets && <AssetTotalUpTimeChart data={assets} />
+					)}
 
-					{assets && <AssetStatusChart data={assets} />}
+					{isLoading ? (
+						<AssetsHealthTableSkeleton isLoading={isLoading} />
+					) : (
+						assets && <AssetStatusChart data={assets} />
+					)}
 				</Flex>
 
 				{assets && <AssetsHealthScoreChart data={assets} />}
