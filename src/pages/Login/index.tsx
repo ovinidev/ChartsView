@@ -35,6 +35,7 @@ export default function Login() {
 			h="100vh"
 			bg="linear-gradient(63.34deg,#2563eb -.49%,rgba(37,98,233,.961367) -.49%,rgba(37,98,232,.938459) 1.64%,rgba(30,60,142,.997332) 85.95%,#1e3a8a 100%,rgba(39,90,213,.572666) 100%,rgba(42,78,183,0) 100%),#ffffff"
 		>
+			<title>Login</title>
 			<Flex
 				direction={{ base: "column", "2xl": "row" }}
 				w="90%"
