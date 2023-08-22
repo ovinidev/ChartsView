@@ -17,7 +17,7 @@ export const Header = () => {
 			w="100%"
 			justify="space-between"
 			align="center"
-			px={{ base: "1rem", "4xl": "2rem" }}
+			px={{ base: "1rem", "4xl": "4rem" }}
 		>
 			<Flex cursor="pointer" onClick={() => navigate("/")}>
 				<svg width="177" height="25" viewBox="0 0 177 25" fill="#fff">
@@ -33,15 +33,6 @@ export const Header = () => {
 					<HeaderLink href="/empresas" name="Empresas" />
 					<HeaderLink href="/unidades" name="Unidades" />
 					<HeaderLink href="/servicos" name="Serviços" />
-					<Text
-						onClick={signOut}
-						cursor="pointer"
-						fontWeight={600}
-						fontSize="18"
-						color="gray.50"
-					>
-						Logout
-					</Text>
 				</HStack>
 			) : (
 				<IconButton
@@ -51,6 +42,18 @@ export const Header = () => {
 					aria-label="Menu"
 					icon={<Icon color="gray.100" fontSize="32" as={AiOutlineMenu} />}
 				/>
+			)}
+
+			{isDesktop && (
+				<Text
+					onClick={signOut}
+					cursor="pointer"
+					fontWeight={600}
+					fontSize="18"
+					color="gray.50"
+				>
+					Logout
+				</Text>
 			)}
 		</Flex>
 	);
