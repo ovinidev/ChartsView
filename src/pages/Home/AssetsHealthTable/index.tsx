@@ -9,7 +9,7 @@ export const AssetsHealthTable = () => {
 	const { data: assets } = useAssets({ name: "" });
 
 	return (
-		<TableContainer align="center">
+		<TableContainer align="center" ml="0">
 			<Table
 				variant="striped"
 				colorScheme="messenger"
