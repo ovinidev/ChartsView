@@ -103,9 +103,6 @@ export default function AssetDetails() {
 											<b>Tempo de atividade total:</b>{" "}
 											{asset?.metrics.totalUptime.toFixed(2)}
 										</Text>
-										<Text>
-											<b>Temperatura max:</b> {asset?.specifications.maxTemp}
-										</Text>
 										{asset?.specifications.power && (
 											<Text>Força: {asset.specifications.power}</Text>
 										)}
