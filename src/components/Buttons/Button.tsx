@@ -15,7 +15,7 @@ export const Button = ({ text, ...rest }: ButtonProps) => {
 			borderRadius="8px"
 			_hover={{
 				filter: "brightness(0.95)",
-				transform: "scale(1.03)",
+				transform: "scale(1.01)",
 			}}
 			_focus={{
 				background: "primary",

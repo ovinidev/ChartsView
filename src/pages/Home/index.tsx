@@ -1,11 +1,7 @@
-import { Flex, Stack } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
-import { useWorkOrders } from "@queries/workorders";
-import { AssetStatusCountItem } from "./AssetStatusCountItem";
 import { useAssets } from "@queries/assets";
-import { AssetsStatusContainer } from "./AssetsStatusContainer";
-import { AssetStatusCountSkeleton } from "./AssetStatusCountItem/AssetStatusCountSkeleton";
 import { AssetsHealthTable } from "./AssetsHealthTable";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import loadable from "@loadable/component";
@@ -15,24 +11,12 @@ const AssetStatusChart = loadable(
 const AssetsHealthScoreChart = loadable(
 	() => import("@components/Charts/AssetsHealthScoreChart"),
 );
+const AssetTotalUpTimeChart = loadable(
+	() => import("@components/Charts/AssetTotalUptimeChart"),
+);
 
 export default function Home() {
-	const { data: workOrders, isLoading: isWorkOrdersLoading } = useWorkOrders({
-		title: "",
-	});
 	const { data: assets } = useAssets({ name: "" });
-
-	const completedCount = workOrders?.filter(
-		(workOrder) => workOrder.status === "completed",
-	).length;
-
-	const inProgressCount = workOrders?.filter(
-		(workOrder) => workOrder.status === "in progress",
-	).length;
-
-	const failedCount = workOrders?.filter(
-		(workOrder) => workOrder.status === "failed",
-	).length;
 
 	return (
 		<Flex direction="column" pb="2rem">
@@ -41,36 +25,20 @@ export default function Home() {
 			<Header />
 
 			<AnimateOnRender>
-				<Stack spacing="12">
-					{isWorkOrdersLoading ? (
-						<AssetStatusCountSkeleton isLoading={isWorkOrdersLoading} />
-					) : (
-						<AssetsStatusContainer>
-							<AssetStatusCountItem
-								title="Completados"
-								statusCount={completedCount}
-							/>
-							<AssetStatusCountItem
-								title="Em progresso"
-								statusCount={inProgressCount}
-							/>
-							<AssetStatusCountItem title="Falhos" statusCount={failedCount} />
-						</AssetsStatusContainer>
-					)}
+				<Flex
+					direction={{ base: "column", "9xl": "row" }}
+					justify={{ base: "", "4xl": "center" }}
+					gap="12"
+					my="2rem"
+				>
+					<AssetsHealthTable />
 
-					<Flex
-						direction={{ base: "column", "4xl": "row" }}
-						align={{ base: "", "4xl": "center" }}
-						justify="center"
-						gap="12"
-					>
-						{assets && <AssetStatusChart data={assets} />}
+					{assets && <AssetTotalUpTimeChart data={assets} />}
 
-						<AssetsHealthTable />
-					</Flex>
+					{assets && <AssetStatusChart data={assets} />}
+				</Flex>
 
-					{assets && <AssetsHealthScoreChart data={assets} />}
-				</Stack>
+				{assets && <AssetsHealthScoreChart data={assets} />}
 
 				<NavigationDrawer />
 			</AnimateOnRender>

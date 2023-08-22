@@ -36,7 +36,7 @@ export const CompanyItem = ({
 		<TRead
 			cursor="normal"
 			_hover={{
-				background: "#FFF",
+				background: "gray.50",
 			}}
 		>
 			<TData>{data.id}</TData>

@@ -18,6 +18,8 @@ export const AssetDetailsSkeleton = ({
 				direction={{ base: "column", "4xl": "row" }}
 				gap="8"
 				align="flex-start"
+				justify="center"
+				w="100%"
 			>
 				<Skeleton
 					isLoaded={!isLoading}

@@ -13,7 +13,6 @@ export default function AssetsHealthScoreChart({
 		chart: {
 			type: "column",
 			zoomType: "x",
-			backgroundColor: "#F7FAFC",
 		},
 		title: {
 			text: "Saúde das máquinas",

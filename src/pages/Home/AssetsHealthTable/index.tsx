@@ -1,41 +1,59 @@
-import { Table, Thead, Tbody, Tr, Td, Th } from "@chakra-ui/react";
-import { TableContainer } from "@components/Table/TableContainer";
+import {
+	Table,
+	Thead,
+	Tbody,
+	Tr,
+	Flex,
+	Image,
+	TableContainer,
+} from "@chakra-ui/react";
 import { THead } from "@components/Table/THead";
 import { TData } from "@components/Table/TData";
 import { useAssets } from "@queries/assets";
-import { Link } from "react-router-dom";
+import { Button } from "@components/Buttons/Button";
+import { useNavigate } from "react-router-dom";
 
 export const AssetsHealthTable = () => {
 	const { data: assets } = useAssets({ name: "" });
+	const navigate = useNavigate();
 
 	return (
-		<TableContainer align="center" ml="0">
-			<Table
-				variant="striped"
-				colorScheme="messenger"
-				size={{ base: "md", "4xl": "lg" }}
-			>
-				<Thead>
-					<Tr>
-						<THead>Nome</THead>
-						<THead>Saúde</THead>
-						<Th></Th>
-					</Tr>
-				</Thead>
-				<Tbody>
-					{assets?.map((asset) => {
-						return (
-							<Tr key={asset.id}>
-								<TData>{asset.name}</TData>
-								<TData>{asset.healthscore}%</TData>
-								<Td>
-									<Link to="/maquinas">Ver mais</Link>
-								</Td>
+		<Flex direction="column" align="center" bg="#ffffff" p="1.5rem">
+			<Flex align="center" direction={{ base: "column", xl: "row" }}>
+				{assets && <Image src={assets[0].image} alt="motor" h="11rem" />}
+
+				<TableContainer ml="1rem">
+					<Table variant="striped" colorScheme="messenger" size="md">
+						<Thead>
+							<Tr>
+								<THead>Nome</THead>
+								<THead>Saúde</THead>
 							</Tr>
-						);
-					})}
-				</Tbody>
-			</Table>
-		</TableContainer>
+						</Thead>
+						<Tbody>
+							{assets
+								?.map((asset) => {
+									return (
+										<Tr key={asset.id}>
+											<TData fontSize="18">{asset.name}</TData>
+											<TData fontSize="18">{asset.healthscore}%</TData>
+										</Tr>
+									);
+								})
+								.slice(0, 3)}
+						</Tbody>
+					</Table>
+				</TableContainer>
+			</Flex>
+
+			<Button
+				onClick={() => navigate("/motores")}
+				w={{ base: "17rem", xl: "32rem" }}
+				text="Ver mais motores"
+				bg="primary"
+				color="gray.100"
+				mt="2rem"
+			/>
+		</Flex>
 	);
 };

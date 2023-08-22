@@ -42,7 +42,12 @@ export default function UserDetails() {
 					{isLoading ? (
 						<UserDetailsSkeleton isLoading={isLoading} />
 					) : (
-						<Stack spacing="8" p={{ base: "1.5rem", "2xl": "2rem" }}>
+						<Stack
+							mt="2rem"
+							spacing="8"
+							p={{ base: "1.5rem", "2xl": "2rem" }}
+							bg="#FFF"
+						>
 							<Flex direction={{ base: "column", "2xl": "row" }}>
 								<Avatar name={user?.name} size="2xl" />
 

@@ -1,9 +1,10 @@
-import { Flex, HStack, Icon, IconButton, Text } from "@chakra-ui/react";
+import { Flex, HStack, Icon, IconButton } from "@chakra-ui/react";
 import { HeaderLink } from "./HeaderLink";
 import { useNavigate } from "react-router-dom";
 import { useSidebar } from "@contexts/useSidebar";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useAuth } from "@contexts/useAuth";
+import { BiLogOutCircle } from "react-icons/bi";
 
 export const Header = () => {
 	const { isDesktop, onOpen } = useSidebar();
@@ -45,15 +46,13 @@ export const Header = () => {
 			)}
 
 			{isDesktop && (
-				<Text
+				<IconButton
+					variant="unstyled"
+					display="flex"
 					onClick={signOut}
-					cursor="pointer"
-					fontWeight={600}
-					fontSize="18"
-					color="gray.50"
-				>
-					Logout
-				</Text>
+					aria-label="logout"
+					icon={<Icon color="gray.100" fontSize="36" as={BiLogOutCircle} />}
+				/>
 			)}
 		</Flex>
 	);

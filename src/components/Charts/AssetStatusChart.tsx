@@ -1,3 +1,4 @@
+import { useBreakpointValue } from "@chakra-ui/react";
 import { Asset } from "@interfaces/assets";
 import Highcharts from "highcharts";
 import { HighchartsReact } from "highcharts-react-official";
@@ -7,6 +8,10 @@ interface AssetStatusChartProps {
 }
 
 export default function AssetStatusChart({ data }: AssetStatusChartProps) {
+	const isDesktop = useBreakpointValue({
+		base: false,
+		"9xl": true,
+	});
 	const inOperationsCount = data.filter(
 		(asset) => asset.status === "inOperation",
 	).length;
@@ -27,7 +32,7 @@ export default function AssetStatusChart({ data }: AssetStatusChartProps) {
 		chart: {
 			type: "pie",
 			zoomType: "x",
-			backgroundColor: "#F7FAFC",
+			height: isDesktop ? 320 : 500,
 		},
 		title: {
 			text: "Status atual das máquinas",
