@@ -19,7 +19,7 @@ export const AssetsHealthTable = () => {
 	const navigate = useNavigate();
 
 	return (
-		<Flex direction="column" align="center" bg="#ffffff" p="1.5rem 1rem">
+		<Flex direction="column" align="center" bg="#ffffff" p="1.5rem 1.5rem">
 			<Flex align="center" direction={{ base: "column", xl: "row" }}>
 				{assets && <Image src={motor} alt="motor" h="11rem" />}
 

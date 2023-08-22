@@ -32,7 +32,7 @@ export default function AssetStatusChart({ data }: AssetStatusChartProps) {
 		chart: {
 			type: "pie",
 			zoomType: "x",
-			width: isDesktop ? 700 : 480,
+			width: isDesktop ? 700 : 500,
 		},
 		title: {
 			text: "Status atual das máquinas",

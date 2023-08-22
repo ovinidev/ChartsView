@@ -20,7 +20,7 @@ export default function AssetTotalUpTimeChart({
 	const options = {
 		chart: {
 			type: "line",
-			width: isDesktop ? 920 : 450,
+			width: isDesktop ? 920 : 500,
 		},
 		title: {
 			text: "Tempo de atividade das máquinas",
