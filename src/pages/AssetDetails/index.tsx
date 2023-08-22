@@ -1,4 +1,11 @@
-import { Flex, Image, Stack, Text, useDisclosure } from "@chakra-ui/react";
+import {
+	Flex,
+	Image,
+	Progress,
+	Stack,
+	Text,
+	useDisclosure,
+} from "@chakra-ui/react";
 import { Header } from "@components/Header";
 import { NavigationDrawer } from "@components/Drawers/NavigationDrawer";
 import { useParams } from "react-router-dom";
@@ -27,6 +34,16 @@ export default function AssetDetails() {
 		timeZone: "UTC",
 	});
 
+	const setColorBasedOnHeath = () => {
+		if (asset) {
+			if (asset?.healthscore <= 50) return "red";
+
+			if (asset.healthscore > 50 && asset.healthscore < 70) return "yellow";
+
+			return "green";
+		}
+	};
+
 	return (
 		<Flex direction="column">
 			<title>{asset?.name}</title>
@@ -39,72 +56,107 @@ export default function AssetDetails() {
 					{isLoading ? (
 						<AssetDetailsSkeleton isLoading={isLoading} />
 					) : (
-						<Stack
+						<Flex
+							direction={{ base: "column", "7xl": "row" }}
 							mt="1rem"
-							bg="#FFF"
-							borderRadius="8px"
-							spacing="8"
-							p={{ base: "1.5rem", "2xl": "2rem" }}
+							gap="4"
 						>
-							<Flex
-								direction={{ base: "column", "4xl": "row" }}
-								gap="8"
-								align="flex-start"
+							<Stack
+								bg="#FFF"
+								borderRadius="8px"
+								spacing="8"
+								align="center"
+								p={{ base: "1.5rem", "2xl": "2rem" }}
+								w={{ base: "25rem", xl: "30rem", "4xl": "45rem" }}
 							>
-								<Image w="20rem" src={asset?.image} alt="asset image" />
+								<Flex
+									direction={{ base: "column", "7xl": "row" }}
+									gap="8"
+									align="flex-start"
+								>
+									<Image w="20rem" src={asset?.image} alt="asset image" />
 
-								<Stack fontWeight={400} fontSize="24">
-									<Text>
-										<b>Nome:</b> {asset?.name}
-									</Text>
-									<Text>
-										<b>Modelo:</b> {asset?.model}
-									</Text>
-									<Text>
-										<b>Sensores:</b>{" "}
-										{asset?.sensors.map((sensor) => {
-											return sensor;
-										})}
-									</Text>
-									<Text>
-										<b>Status:</b> {asset?.status}
-									</Text>
-									<Text>
-										<b>Ultima atualização:</b> {lastUptime}
-									</Text>
-									<Text>
-										<b>Atualização total da coleção:</b>{" "}
-										{asset?.metrics.totalCollectsUptime}
-									</Text>
-									<Text>
-										<b>Tempo de atividade total:</b>{" "}
-										{asset?.metrics.totalUptime.toFixed(2)}
-									</Text>
-									<Text>
-										<b>Temperatura max:</b> {asset?.specifications.maxTemp}
-									</Text>
-									{asset?.specifications.power && (
-										<Text>Força: {asset.specifications.power}</Text>
-									)}
-									{asset?.specifications.rpm && (
+									<Stack fontWeight={400} fontSize="18">
 										<Text>
-											<b>RPM:</b> {asset?.specifications.rpm}
+											<b>Nome:</b> {asset?.name}
 										</Text>
-									)}
+										<Text>
+											<b>Modelo:</b> {asset?.model}
+										</Text>
+										<Text>
+											<b>Sensores:</b>{" "}
+											{asset?.sensors.map((sensor) => {
+												return sensor;
+											})}
+										</Text>
+										<Text>
+											<b>Status:</b> {asset?.status}
+										</Text>
+										<Text>
+											<b>Ultima atualização:</b> {lastUptime}
+										</Text>
+										<Text>
+											<b>Atualização total da coleção:</b>{" "}
+											{asset?.metrics.totalCollectsUptime}
+										</Text>
+										<Text>
+											<b>Tempo de atividade total:</b>{" "}
+											{asset?.metrics.totalUptime.toFixed(2)}
+										</Text>
+										<Text>
+											<b>Temperatura max:</b> {asset?.specifications.maxTemp}
+										</Text>
+										{asset?.specifications.power && (
+											<Text>Força: {asset.specifications.power}</Text>
+										)}
+										{asset?.specifications.rpm && (
+											<Text>
+												<b>RPM:</b> {asset?.specifications.rpm}
+											</Text>
+										)}
+
+										<Button
+											bg="primary"
+											color="white"
+											text="Status"
+											onClick={onOpen}
+										/>
+									</Stack>
+								</Flex>
+							</Stack>
+
+							<Stack
+								bg="#FFF"
+								borderRadius="8px"
+								spacing="8"
+								p={{ base: "1.5rem", "7xl": "2rem" }}
+								w={{ base: "100%", "7xl": "25rem" }}
+							>
+								<Stack>
+									<Text>Saúde</Text>
+									<Progress
+										size="lg"
+										colorScheme={setColorBasedOnHeath()}
+										value={asset?.healthscore}
+										borderRadius="3px"
+									/>
 								</Stack>
 
-								<Button
-									bg="primary"
-									color="white"
-									text="Status"
-									onClick={onOpen}
-								/>
-							</Flex>
-						</Stack>
+								<Stack>
+									<Text>Temperatura máxima</Text>
+									<Progress
+										size="lg"
+										colorScheme={setColorBasedOnHeath()}
+										value={asset?.healthscore}
+										borderRadius="3px"
+									/>
+								</Stack>
+							</Stack>
+						</Flex>
 					)}
 
 					<Stack
-						w={{ base: "90%", "4xl": "66rem" }}
+						w={{ base: "100%", xl: "30rem", "4xl": "55rem", "7xl": "81rem" }}
 						mt="2rem"
 						spacing="4"
 						px={{ base: "0", "4xl": "5rem" }}
@@ -115,6 +167,7 @@ export default function AssetDetails() {
 				</Flex>
 
 				<NavigationDrawer />
+
 				<TimelineDrawer isOpen={isOpen} onClose={onClose} />
 			</AnimateOnRender>
 		</Flex>
