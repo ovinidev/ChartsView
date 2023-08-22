@@ -1,3 +1,4 @@
+import { useBreakpointValue } from "@chakra-ui/react";
 import { Asset } from "@interfaces/assets";
 import Highcharts from "highcharts";
 import { HighchartsReact } from "highcharts-react-official";
@@ -9,10 +10,16 @@ interface AssetsHealthScoreChartProps {
 export default function AssetsHealthScoreChart({
 	data,
 }: AssetsHealthScoreChartProps) {
+	const isDesktop = useBreakpointValue({
+		base: false,
+		"9xl": true,
+	});
+
 	const options = {
 		chart: {
 			type: "column",
 			zoomType: "x",
+			width: isDesktop ? 1720 : 480,
 		},
 		title: {
 			text: "Saúde das máquinas",

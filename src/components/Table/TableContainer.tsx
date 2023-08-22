@@ -10,7 +10,7 @@ interface TableContainerProps extends FlexProps {
 
 export const TableContainer = ({ children, ...rest }: TableContainerProps) => {
 	return (
-		<ChakraTableContainer ml={{ base: "0", xl: "3rem" }} {...rest}>
+		<ChakraTableContainer mx={{ base: "0", xl: "3rem" }} {...rest}>
 			{children}
 		</ChakraTableContainer>
 	);

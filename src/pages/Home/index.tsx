@@ -20,7 +20,7 @@ export default function Home() {
 	const { data: assets, isLoading } = useAssets({ name: "" });
 
 	return (
-		<Flex direction="column" pb="2rem">
+		<Flex direction="column" pb="2rem" align="center">
 			<title>Início</title>
 
 			<Header />
@@ -29,7 +29,7 @@ export default function Home() {
 				<Flex
 					direction={{ base: "column", "9xl": "row" }}
 					justify={{ base: "", "4xl": "center" }}
-					gap="12"
+					gap="4"
 					my="2rem"
 				>
 					{isLoading ? (
@@ -51,10 +51,10 @@ export default function Home() {
 					)}
 				</Flex>
 
-				{assets && <AssetsHealthScoreChart data={assets} />}
-
 				<NavigationDrawer />
 			</AnimateOnRender>
+
+			{assets && <AssetsHealthScoreChart data={assets} />}
 		</Flex>
 	);
 }
