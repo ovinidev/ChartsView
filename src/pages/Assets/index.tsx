@@ -19,8 +19,10 @@ import { CreateAssetModal } from "@components/Modals/Assets/CreateAssetModal";
 import { UpdateAssetModal } from "@components/Modals/Assets/UpdateAssetModal";
 import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
 import { useDeleteAsset } from "@mutations/assets";
+import { usePermissions } from "@hooks/usePermissions";
 
 export default function Units() {
+	const { isAdmin } = usePermissions();
 	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
 
@@ -49,12 +51,14 @@ export default function Units() {
 						<Flex gap="4">
 							<InputSearch handleChange={handleChangeDebounce} />
 
-							<Button
-								onClick={() => dispatch({ type: ModalAction.ADD })}
-								text="Novo"
-								bg="primary"
-								color="#FFF"
-							/>
+							{isAdmin && (
+								<Button
+									onClick={() => dispatch({ type: ModalAction.ADD })}
+									text="Novo"
+									bg="primary"
+									color="#FFF"
+								/>
+							)}
 						</Flex>
 
 						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
@@ -63,7 +67,7 @@ export default function Units() {
 									<THead>Nome</THead>
 									<THead>Status</THead>
 									<THead>Saúde</THead>
-									<Th></Th>
+									{isAdmin && <Th></Th>}
 								</Tr>
 							</Thead>
 							<Tbody>

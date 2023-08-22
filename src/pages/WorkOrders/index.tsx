@@ -20,8 +20,11 @@ import { CreateWorkOrderModal } from "@components/Modals/Workorders/CreateWorkOr
 import { UpdateWorkOrderModal } from "@components/Modals/Workorders/UpdateWorkOrderModal";
 import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
 import { useDeleteWorkOrders } from "@mutations/workorders";
+import { usePermissions } from "@hooks/usePermissions";
 
 export default function WorkOrders() {
+	const { isAdmin } = usePermissions();
+
 	const { isDesktop } = useSidebar();
 	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
@@ -51,12 +54,14 @@ export default function WorkOrders() {
 						<Flex gap="4">
 							<InputSearch handleChange={handleChangeDebounce} />
 
-							<Button
-								onClick={() => dispatch({ type: ModalAction.ADD })}
-								text="Novo"
-								bg="primary"
-								color="#FFF"
-							/>
+							{isAdmin && (
+								<Button
+									onClick={() => dispatch({ type: ModalAction.ADD })}
+									text="Novo"
+									bg="primary"
+									color="#FFF"
+								/>
+							)}
 						</Flex>
 
 						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
@@ -65,7 +70,7 @@ export default function WorkOrders() {
 									<THead>Título</THead>
 									{isDesktop && <THead>Descrição</THead>}
 									<THead>Status</THead>
-									<Th></Th>
+									{isAdmin && <Th></Th>}
 								</Tr>
 							</Thead>
 							<Tbody>

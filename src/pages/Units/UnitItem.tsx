@@ -7,6 +7,7 @@ import { RiPencilFill } from "react-icons/ri";
 import { TbTrash } from "react-icons/tb";
 import { Action, ModalAction } from "@hooks/useModal";
 import { Dispatch } from "react";
+import { usePermissions } from "@hooks/usePermissions";
 
 interface UnitItemProps {
 	data: Unit;
@@ -15,6 +16,8 @@ interface UnitItemProps {
 }
 
 export const UnitItem = ({ data, dispatch, onSetUnitInfo }: UnitItemProps) => {
+	const { isAdmin } = usePermissions();
+
 	const navigate = useNavigate();
 
 	const handleOpenEdit = (e: React.MouseEvent) => {
@@ -33,25 +36,27 @@ export const UnitItem = ({ data, dispatch, onSetUnitInfo }: UnitItemProps) => {
 		<TRead onClick={() => navigate(`/unidades/${data.id}`)}>
 			<TData>{data.id}</TData>
 			<TData>{data.name}</TData>
-			<Td>
-				<HStack spacing="4">
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={RiPencilFill}
-						onClick={handleOpenEdit}
-						cursor="pointer"
-					/>
+			{isAdmin && (
+				<Td>
+					<HStack spacing="4">
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={RiPencilFill}
+							onClick={handleOpenEdit}
+							cursor="pointer"
+						/>
 
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={TbTrash}
-						onClick={handleOpenDelete}
-						cursor="pointer"
-					/>
-				</HStack>
-			</Td>
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={TbTrash}
+							onClick={handleOpenDelete}
+							cursor="pointer"
+						/>
+					</HStack>
+				</Td>
+			)}
 		</TRead>
 	);
 };

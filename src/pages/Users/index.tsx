@@ -19,8 +19,11 @@ import { UpdateUserModal } from "@components/Modals/Users/UpdateUserModal";
 import { Button } from "@components/Buttons/Button";
 import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
 import { useDeleteUser } from "@mutations/users";
+import { usePermissions } from "@hooks/usePermissions";
 
 export default function Units() {
+	const { isAdmin } = usePermissions();
+
 	const { dispatch, state } = useModal();
 	const { inputSearch, handleChangeDebounce } = useSearch();
 
@@ -49,12 +52,14 @@ export default function Units() {
 						<Flex gap="4">
 							<InputSearch handleChange={handleChangeDebounce} />
 
-							<Button
-								onClick={() => dispatch({ type: ModalAction.ADD })}
-								text="Novo"
-								bg="primary"
-								color="#FFF"
-							/>
+							{isAdmin && (
+								<Button
+									onClick={() => dispatch({ type: ModalAction.ADD })}
+									text="Novo"
+									bg="primary"
+									color="#FFF"
+								/>
+							)}
 						</Flex>
 
 						<Table variant="simple" size={{ base: "md", "4xl": "lg" }}>
@@ -62,7 +67,7 @@ export default function Units() {
 								<Tr>
 									<THead>Nome</THead>
 									<THead>Email</THead>
-									<Th></Th>
+									{isAdmin && <Th></Th>}
 								</Tr>
 							</Thead>
 							<Tbody>

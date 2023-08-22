@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { RiPencilFill } from "react-icons/ri";
 import { TbTrash } from "react-icons/tb";
 import { HStack, Icon, Td } from "@chakra-ui/react";
+import { usePermissions } from "@hooks/usePermissions";
 
 interface AssetItemProps {
 	data: Asset;
@@ -19,6 +20,8 @@ export const AssetItem = ({
 	dispatch,
 	onSetAssetInfo,
 }: AssetItemProps) => {
+	const { isAdmin } = usePermissions();
+
 	const navigate = useNavigate();
 
 	const handleOpenEdit = (e: React.MouseEvent) => {
@@ -38,25 +41,27 @@ export const AssetItem = ({
 			<TData>{data.name}</TData>
 			<TData>{data.status}</TData>
 			<TData>{data.healthscore}%</TData>
-			<Td>
-				<HStack spacing="4">
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={RiPencilFill}
-						onClick={handleOpenEdit}
-						cursor="pointer"
-					/>
+			{isAdmin && (
+				<Td>
+					<HStack spacing="4">
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={RiPencilFill}
+							onClick={handleOpenEdit}
+							cursor="pointer"
+						/>
 
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={TbTrash}
-						onClick={handleOpenDelete}
-						cursor="pointer"
-					/>
-				</HStack>
-			</Td>
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={TbTrash}
+							onClick={handleOpenDelete}
+							cursor="pointer"
+						/>
+					</HStack>
+				</Td>
+			)}
 		</TRead>
 	);
 };

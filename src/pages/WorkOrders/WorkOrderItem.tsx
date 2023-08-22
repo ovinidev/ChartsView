@@ -8,6 +8,7 @@ import { RiPencilFill } from "react-icons/ri";
 import { TbTrash } from "react-icons/tb";
 import { Action, ModalAction } from "@hooks/useModal";
 import { Dispatch } from "react";
+import { usePermissions } from "@hooks/usePermissions";
 interface WorkOrderItemProps {
 	data: WorkOrder;
 	dispatch: Dispatch<Action>;
@@ -19,6 +20,8 @@ export const WorkOrderItem = ({
 	dispatch,
 	onSetWorkOrderInfo,
 }: WorkOrderItemProps) => {
+	const { isAdmin } = usePermissions();
+
 	const navigate = useNavigate();
 	const { isDesktop } = useSidebar();
 
@@ -39,25 +42,27 @@ export const WorkOrderItem = ({
 			<TData>{data.title}</TData>
 			{isDesktop && <TData>{data.description}</TData>}
 			<TData>{data.status}</TData>
-			<Td>
-				<HStack spacing="4">
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={RiPencilFill}
-						onClick={handleOpenEdit}
-						cursor="pointer"
-					/>
+			{isAdmin && (
+				<Td>
+					<HStack spacing="4">
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={RiPencilFill}
+							onClick={handleOpenEdit}
+							cursor="pointer"
+						/>
 
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={TbTrash}
-						onClick={handleOpenDelete}
-						cursor="pointer"
-					/>
-				</HStack>
-			</Td>
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={TbTrash}
+							onClick={handleOpenDelete}
+							cursor="pointer"
+						/>
+					</HStack>
+				</Td>
+			)}
 		</TRead>
 	);
 };

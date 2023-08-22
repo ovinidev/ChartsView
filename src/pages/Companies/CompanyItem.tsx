@@ -6,6 +6,7 @@ import { RiPencilFill } from "react-icons/ri";
 import { TbTrash } from "react-icons/tb";
 import { Action, ModalAction } from "@hooks/useModal";
 import { Dispatch } from "react";
+import { usePermissions } from "@hooks/usePermissions";
 interface CompanyItemProps {
 	data: Company;
 	dispatch: Dispatch<Action>;
@@ -17,6 +18,8 @@ export const CompanyItem = ({
 	dispatch,
 	onSetCompanyInfo,
 }: CompanyItemProps) => {
+	const { isAdmin } = usePermissions();
+
 	const handleOpenEdit = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		onSetCompanyInfo();
@@ -38,25 +41,27 @@ export const CompanyItem = ({
 		>
 			<TData>{data.id}</TData>
 			<TData>{data.name}</TData>
-			<Td>
-				<HStack spacing="4">
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={RiPencilFill}
-						onClick={handleOpenEdit}
-						cursor="pointer"
-					/>
+			{isAdmin && (
+				<Td>
+					<HStack spacing="4">
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={RiPencilFill}
+							onClick={handleOpenEdit}
+							cursor="pointer"
+						/>
 
-					<Icon
-						fontSize="26"
-						color="gray.700"
-						as={TbTrash}
-						onClick={handleOpenDelete}
-						cursor="pointer"
-					/>
-				</HStack>
-			</Td>
+						<Icon
+							fontSize="26"
+							color="gray.700"
+							as={TbTrash}
+							onClick={handleOpenDelete}
+							cursor="pointer"
+						/>
+					</HStack>
+				</Td>
+			)}
 		</TRead>
 	);
 };
