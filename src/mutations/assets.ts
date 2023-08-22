@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ASSETS } from "@constants/entities";
 import { Asset } from "@interfaces/assets";
 import { useAssets } from "@queries/assets";

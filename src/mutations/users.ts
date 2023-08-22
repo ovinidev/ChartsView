@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { USERS } from "@constants/entities";
 import { User } from "@interfaces/users";
 import { useUsers } from "@queries/users";

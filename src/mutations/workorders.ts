@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { WORKORDERS } from "@constants/entities";
 import { WorkOrder } from "@interfaces/workorders";
 import { useWorkOrders } from "@queries/workorders";

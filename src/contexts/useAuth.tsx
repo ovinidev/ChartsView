@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	createContext,
 	ReactNode,
@@ -74,7 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 			navigate("/");
 		} catch (err: any) {
-			console.log(err);
+			throw new Error(err.message);
 		} finally {
 			handleIsLoading(false);
 		}

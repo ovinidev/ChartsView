@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UNITS } from "@constants/entities";
 import { Unit } from "@interfaces/units";
 import { useUnits } from "@queries/units";
