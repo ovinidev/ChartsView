@@ -51,7 +51,7 @@ export const theme = extendTheme({
 		"22": "1.375rem", // 22px
 		"24": "1.5rem", // 24px
 		"26": "1.625rem", // 26px
-		"28": "1.75", // 28px
+		"28": "1.75rem", // 28px
 		"30": "1.875rem", // 30px
 		"32": "2rem", // 32px
 		"34": "2.125rem", // 34px
