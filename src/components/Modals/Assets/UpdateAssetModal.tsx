@@ -60,7 +60,7 @@ export const UpdateAssetModal = ({
 			<ModalOverlay bg="modalOverlay" />
 			<ModalContent w="90%" bg="white">
 				<ModalHeader fontSize={{ base: "16", "4xl": "22" }}>
-					Editar Usuário
+					Editar máquina
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>

@@ -54,7 +54,7 @@ export const UpdateCompanyModal = ({
 			<ModalOverlay bg="modalOverlay" />
 			<ModalContent w="90%" bg="white">
 				<ModalHeader fontSize={{ base: "16", "4xl": "22" }}>
-					Editar Usuário
+					Editar empresa
 				</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
