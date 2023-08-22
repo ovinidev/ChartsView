@@ -31,8 +31,8 @@ export default function AssetDetails() {
 				<BackButton />
 
 				<Flex direction="column" align="center">
-					{!isLoading ? (
-						<AssetDetailsSkeleton isLoading={!isLoading} />
+					{isLoading ? (
+						<AssetDetailsSkeleton isLoading={isLoading} />
 					) : (
 						<Flex
 							direction={{ base: "column", "7xl": "row" }}
