@@ -17,7 +17,7 @@ export const Header = () => {
 			w="100%"
 			justify="space-between"
 			align="center"
-			px={{ base: "1rem", "4xl": "4rem" }}
+			px={{ base: "1rem", "4xl": "3rem" }}
 		>
 			<Flex cursor="pointer" onClick={() => navigate("/")}>
 				<svg width="177" height="25" viewBox="0 0 177 25" fill="#fff">
