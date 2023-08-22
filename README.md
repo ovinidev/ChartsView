@@ -36,7 +36,7 @@ Tecnologias utilizada no projeto:
 Agora você pode acessar [`localhost:5173`](http://localhost:5173) do seu
 navegador.
 
-## Funcionalidades
+## 👨‍💻 Funcionalidades
 
 A aplicação oferece as seguintes funcionalidades:
 
@@ -52,12 +52,14 @@ entidades.
 
 ### Permissões
 
-A aplicação possui dois níveis de permissão:
-
-Usuário Administrador As credenciais para os dois níveis são:
-
-Usuário: user@tractian.com Administrador: admin@tractian.com Apenas o
-administrador pode realizar as operações de criar, editar e deletar entidades.
+- A aplicação possui dois níveis de permissão:
+  - Usuário
+  - Administrador
+- As credenciais para os dois níveis são:
+  - Usuário: user@tractian.com
+  - Administrador: admin@tractian.com
+- Apenas o administrador pode realizar as operações de criar, editar e deletar
+  entidades.
 
 <img src="https://i.imgur.com/kBEIygl.png" alt="imagem">
 
