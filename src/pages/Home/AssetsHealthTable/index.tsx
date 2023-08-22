@@ -12,6 +12,7 @@ import { TData } from "@components/Table/TData";
 import { useAssets } from "@queries/assets";
 import { Button } from "@components/Buttons/Button";
 import { useNavigate } from "react-router-dom";
+import motor from "@assets/motor.png";
 
 export const AssetsHealthTable = () => {
 	const { data: assets } = useAssets({ name: "" });
@@ -20,7 +21,7 @@ export const AssetsHealthTable = () => {
 	return (
 		<Flex direction="column" align="center" bg="#ffffff" p="1.5rem">
 			<Flex align="center" direction={{ base: "column", xl: "row" }}>
-				{assets && <Image src={assets[0].image} alt="motor" h="11rem" />}
+				{assets && <Image src={motor} alt="motor" h="11rem" />}
 
 				<TableContainer ml="1rem">
 					<Table variant="striped" colorScheme="messenger" size="md">
