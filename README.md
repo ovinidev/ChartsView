@@ -29,9 +29,9 @@ Tecnologias utilizada no projeto:
 
 - Clone o repositório
 - Instale as dependências com `pnpm install`
-- Inicie o servidor com `pnpm dev`
 - Adicione a variável de ambiente:
   `VITE_APP_API_URL='https://my-json-server.typicode.com/tractian/fake-api'`
+- Inicie o servidor com `pnpm dev`
 
 Agora você pode acessar [`localhost:5173`](http://localhost:5173) do seu
 navegador.

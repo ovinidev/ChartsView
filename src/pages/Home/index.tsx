@@ -27,10 +27,9 @@ export default function Home() {
 
 			<AnimateOnRender>
 				<Flex
-					direction={{ base: "column", "9xl": "row" }}
+					mt="2rem"
+					direction={{ base: "column", "4xl": "row" }}
 					justify={{ base: "", "4xl": "center" }}
-					gap="4"
-					my="2rem"
 				>
 					{isLoading ? (
 						<AssetsHealthTableSkeleton isLoading={isLoading} />
@@ -43,18 +42,23 @@ export default function Home() {
 					) : (
 						assets && <AssetTotalUpTimeChart data={assets} />
 					)}
+				</Flex>
 
+				<Flex direction={{ base: "column", "4xl": "row" }} align="center">
 					{isLoading ? (
 						<AssetsHealthTableSkeleton isLoading={isLoading} />
 					) : (
 						assets && <AssetStatusChart data={assets} />
 					)}
+					{isLoading ? (
+						<AssetsHealthTableSkeleton isLoading={isLoading} />
+					) : (
+						assets && <AssetsHealthScoreChart data={assets} />
+					)}
 				</Flex>
 
 				<NavigationDrawer />
 			</AnimateOnRender>
-
-			{assets && <AssetsHealthScoreChart data={assets} />}
 		</Flex>
 	);
 }

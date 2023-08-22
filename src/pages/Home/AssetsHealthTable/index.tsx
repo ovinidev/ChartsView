@@ -32,16 +32,14 @@ export const AssetsHealthTable = () => {
 							</Tr>
 						</Thead>
 						<Tbody>
-							{assets
-								?.map((asset) => {
-									return (
-										<Tr key={asset.id}>
-											<TData fontSize="18">{asset.name}</TData>
-											<TData fontSize="18">{asset.healthscore}%</TData>
-										</Tr>
-									);
-								})
-								.slice(0, 3)}
+							{assets?.map((asset) => {
+								return (
+									<Tr key={asset.id}>
+										<TData fontSize="18">{asset.name}</TData>
+										<TData fontSize="18">{asset.healthscore}%</TData>
+									</Tr>
+								);
+							})}
 						</Tbody>
 					</Table>
 				</TableContainer>

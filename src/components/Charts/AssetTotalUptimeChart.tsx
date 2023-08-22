@@ -20,10 +20,10 @@ export default function AssetTotalUpTimeChart({
 	const options = {
 		chart: {
 			type: "line",
-			height: isDesktop ? 320 : 500,
+			width: isDesktop ? 920 : 450,
 		},
 		title: {
-			text: "Exemplo de Gráfico de Linha com Duas Linhas",
+			text: "Tempo de atividade das máquinas",
 		},
 		xAxis: {
 			categories: ["10h", "8h", "6h", "4h", "2h", "1h"],
