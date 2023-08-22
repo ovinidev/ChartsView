@@ -48,7 +48,7 @@ export const AssetsHealthTable = () => {
 			</Flex>
 
 			<Button
-				onClick={() => navigate("/motores")}
+				onClick={() => navigate("/maquinas")}
 				w={{ base: "17rem", xl: "24rem" }}
 				text="Ver mais motores"
 				bg="primary"

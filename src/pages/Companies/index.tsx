@@ -14,7 +14,7 @@ import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import { CreateCompanyModal } from "@components/Modals/Companies/CreateCompanyModal";
 import { ModalAction, useModal } from "@hooks/useModal";
 import { Button } from "@components/Buttons/Button";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { Company } from "@interfaces/companies";
 import { UpdateCompanyModal } from "@components/Modals/Companies/UpdateCompanyModal";
 import { DeleteConfirmationModal } from "@components/Modals/DeleteConfirmationModal";
@@ -32,9 +32,9 @@ export default function Companies() {
 
 	const { mutateAsync: deleteCompany } = useDeleteCompany();
 
-	const handleDeleteCompany = useCallback(async () => {
+	const handleDeleteCompany = async () => {
 		await deleteCompany(company);
-	}, []);
+	};
 
 	return (
 		<Flex direction="column">

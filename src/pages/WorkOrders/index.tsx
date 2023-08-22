@@ -13,7 +13,7 @@ import { useSidebar } from "@contexts/useSidebar";
 import { Pagination } from "@components/Pagination";
 import { AnimateOnRender } from "@components/Motions/AnimateOnRender";
 import { ModalAction, useModal } from "@hooks/useModal";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { WorkOrder } from "@interfaces/workorders";
 import { Button } from "@components/Buttons/Button";
 import { CreateWorkOrderModal } from "@components/Modals/Workorders/CreateWorkOrderModal";
@@ -34,9 +34,9 @@ export default function WorkOrders() {
 
 	const { mutateAsync: deleteWorkOrder } = useDeleteWorkOrders();
 
-	const handleDeleteWorkOrder = useCallback(async () => {
+	const handleDeleteWorkOrder = async () => {
 		await deleteWorkOrder(workOrder);
-	}, []);
+	};
 
 	return (
 		<Flex direction="column">
