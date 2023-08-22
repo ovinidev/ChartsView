@@ -1,11 +1,13 @@
-import { Flex, HStack, Icon, IconButton } from "@chakra-ui/react";
+import { Flex, HStack, Icon, IconButton, Text } from "@chakra-ui/react";
 import { HeaderLink } from "./HeaderLink";
 import { useNavigate } from "react-router-dom";
 import { useSidebar } from "@contexts/useSidebar";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useAuth } from "@contexts/useAuth";
 
 export const Header = () => {
 	const { isDesktop, onOpen } = useSidebar();
+	const { signOut } = useAuth();
 	const navigate = useNavigate();
 
 	return (
@@ -24,13 +26,22 @@ export const Header = () => {
 			</Flex>
 
 			{isDesktop ? (
-				<HStack spacing="2">
+				<HStack spacing="2" align="center">
 					<HeaderLink href="/" name="Início" />
 					<HeaderLink href="/maquinas" name="Máquinas" />
 					<HeaderLink href="/usuarios" name="Usuários" />
 					<HeaderLink href="/empresas" name="Empresas" />
 					<HeaderLink href="/unidades" name="Unidades" />
 					<HeaderLink href="/servicos" name="Serviços" />
+					<Text
+						onClick={signOut}
+						cursor="pointer"
+						fontWeight={600}
+						fontSize="18"
+						color="gray.50"
+					>
+						Logout
+					</Text>
 				</HStack>
 			) : (
 				<IconButton
