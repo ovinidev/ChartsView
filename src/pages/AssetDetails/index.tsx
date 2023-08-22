@@ -44,6 +44,16 @@ export default function AssetDetails() {
 		}
 	};
 
+	const setColorBasedOnTemperature = () => {
+		if (asset) {
+			if (asset?.healthscore <= 50) return "green";
+
+			if (asset.healthscore > 50 && asset.healthscore < 70) return "yellow";
+
+			return "red";
+		}
+	};
+
 	return (
 		<Flex direction="column">
 			<title>{asset?.name}</title>
@@ -143,7 +153,7 @@ export default function AssetDetails() {
 									<Text>Temperatura máxima</Text>
 									<Progress
 										size="lg"
-										colorScheme={setColorBasedOnHeath()}
+										colorScheme={setColorBasedOnTemperature()}
 										value={asset?.healthscore}
 										borderRadius="3px"
 									/>
