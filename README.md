@@ -1,10 +1,6 @@
-# Tractian Challenge
+# Charts View
 
 <p align="center">
-  
-<h4>
-  Aplicação Frontend com React.js realizado durante o desafio da Tractian
-</h4>
 
 ## 💡 Tecnologias
 
@@ -60,8 +56,6 @@ entidades.
   - Administrador: admin@tractian.com
 - Apenas o administrador pode realizar as operações de criar, editar e deletar
   entidades.
-
-<img src="https://i.imgur.com/zRboz8o.png" alt="imagem">
 
 <div>
   <img align="left" src="https://avatars.githubusercontent.com/u/62653539?v=4" width=35 alt="Profile"/>
