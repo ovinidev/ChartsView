@@ -31,7 +31,7 @@ interface AuthData {
 	isLoading: boolean;
 }
 
-const emails = ["admin@tractian.com", "user@tractian.com"];
+const emails = ["admin@charts.com", "user@charts.com"];
 
 const AuthContext = createContext({} as AuthData);
 

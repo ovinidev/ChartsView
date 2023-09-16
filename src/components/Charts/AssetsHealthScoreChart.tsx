@@ -19,7 +19,7 @@ export default function AssetsHealthScoreChart({
 		chart: {
 			type: "column",
 			zoomType: "x",
-			width: isDesktop ? 700 : 500,
+			width: isDesktop ? 720 : 500,
 		},
 		title: {
 			text: "Saúde das máquinas",
