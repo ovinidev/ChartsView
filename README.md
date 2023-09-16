@@ -52,8 +52,8 @@ entidades.
   - Usuário
   - Administrador
 - As credenciais para os dois níveis são:
-  - Usuário: user@tractian.com
-  - Administrador: admin@tractian.com
+  - Usuário: user@charts.com
+  - Administrador: admin@charts.com
 - Apenas o administrador pode realizar as operações de criar, editar e deletar
   entidades.
 
